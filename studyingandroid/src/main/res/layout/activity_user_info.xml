@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context="com.beyondself.jalen.studyingandroid.activity.login.UserInfoActivity">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/UserInfoTitleStyle"
+            android:text="用户名:" />
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            style="@style/UserInfoContentStyle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/UserInfoTitleStyle"
+            android:text="性别:" />
+
+        <TextView
+            android:id="@+id/tv_user_sex"
+            style="@style/UserInfoContentStyle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/UserInfoTitleStyle"
+            android:text="年龄:" />
+
+        <TextView
+            android:id="@+id/tv_user_age"
+            style="@style/UserInfoContentStyle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/UserInfoTitleStyle"
+            android:text="自我描述:" />
+
+        <TextView
+            android:id="@+id/tv_user_description"
+            style="@style/UserInfoContentStyle" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/UserInfoTitleStyle"
+            android:text="手机号码:" />
+
+        <TextView
+            android:id="@+id/tv_user_pnumber"
+            style="@style/UserInfoContentStyle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/UserInfoTitleStyle"
+            android:text="邮箱:" />
+
+        <TextView
+            android:id="@+id/tv_user_email"
+            style="@style/UserInfoContentStyle" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/UserInfoTitleStyle"
+            android:layout_centerVertical="true"
+            android:text="手机绑定:" />
+
+        <ToggleButton
+            android:id="@+id/tb_user_pnumber_bd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:clickable="false"
+            android:textOff="不绑定"
+            android:textOn="绑定" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/UserInfoTitleStyle"
+            android:layout_centerVertical="true"
+            android:text="邮箱绑定:" />
+
+        <ToggleButton
+            android:id="@+id/tb_user_email_bd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:clickable="false"
+            android:textOff="不绑定"
+            android:textOn="绑定" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:onClick="jump_update_Userinfo"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/btn_image_sign_selector"
+            android:gravity="center"
+            android:text="修改个人信息"
+            android:textColor="#000"
+            android:textSize="20sp" />
+    </RelativeLayout>
+</LinearLayout>

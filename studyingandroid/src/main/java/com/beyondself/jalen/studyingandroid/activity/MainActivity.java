@@ -5,14 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.beyondself.jalen.studyingandroid.R;
 import com.beyondself.jalen.studyingandroid.activity.login.LoginActivity;
-import com.beyondself.jalen.studyingandroid.activity.login.UpdateUserInfoActivity;
-import com.beyondself.jalen.studyingandroid.activity.login.UserInfoActivity;
-import com.beyondself.jalen.studyingandroid.domain.UserInfo;
-import com.beyondself.jalen.studyingandroid.utils.SharePreUtils;
+import com.beyondself.jalen.studyingandroid.activity.study.StudyActivity;
 import com.beyondself.jalen.studyingandroid.utils.ToastUtils;
 
 import cn.bmob.v3.BmobUser;

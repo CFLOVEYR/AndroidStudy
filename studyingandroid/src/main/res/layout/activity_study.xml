@@ -1,58 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp"
-    tools:context="com.beyondself.jalen.studyingandroid.activity.StudyActivity">
+    tools:context=".activity.study.StudyActivity">
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_study_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+
+    <!--底部布局-->
     <LinearLayout
+        android:id="@+id/ll_study_footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="用户积分:"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/et_input_score"
+        <Button
+            android:id="@+id/bt_study_footer_previous"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
-            android:hint="请输入用户积分" />
-    </LinearLayout>
+            android:background="@drawable/btn_image_sign_selector"
+            android:gravity="center"
+            android:text="上一题"
+            android:visibility="gone"
+            android:textColor="@color/black" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="学习进度:"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/et_input_progress"
+        <Button
+            android:layout_marginLeft="10dp"
+            android:id="@+id/bt_study_footer_next"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
-            android:hint="请输入学习进度" />
+            android:background="@drawable/btn_image_sign_selector"
+            android:gravity="center"
+            android:text="下一题"
+            android:textColor="@color/black" />
+        <Button
+            android:id="@+id/bt_study_footer_save"
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_image_sign_selector"
+            android:gravity="center"
+            android:text="保存信息"
+            android:textColor="@color/black" />
     </LinearLayout>
-
-    <Button
-        android:textColor="#000"
-        android:textSize="20sp"
-        android:onClick="saveUserToServer"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="保存到服务器" />
-</LinearLayout>
+</RelativeLayout>

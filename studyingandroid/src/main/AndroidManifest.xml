@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!-- 没有ActionBar -->
+        <!--闪屏页面-->
         <activity
             android:name=".activity.SplashActivity"
             android:theme="@style/MyTheme">
@@ -27,27 +27,41 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--主页面-->
         <activity android:name=".activity.MainActivity" />
+        <!--登录页面-->
         <activity
             android:name=".activity.login.LoginActivity"
             android:parentActivityName=".activity.MainActivity" />
+        <!--注册页面-->
         <activity
             android:name=".activity.login.RegisterActivity"
             android:parentActivityName=".activity.login.LoginActivity" />
-        <activity android:name=".activity.login.UserInfoActivity" />
-        <activity android:name=".activity.login.UpdateUserInfoActivity" />
-        <!--
-             ATTENTION: This was auto-generated to add Google Play services to your project for
-             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
-        -->
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+        <!--用户信息页面-->
+        <activity
+            android:name=".activity.login.UserInfoActivity"
+            android:parentActivityName=".activity.MainActivity" />
+        <!--更改用户信息页面-->
+        <activity
+            android:name=".activity.login.UpdateUserInfoActivity"
+            android:parentActivityName=".activity.login.UserInfoActivity" />
 
-        <activity android:name=".activity.SettingActivity" />
-        <activity android:name=".activity.login.PickUpPSDActivity" />
-        <activity android:name=".activity.study.StudyActivity" />
-        <activity android:name=".activity.RankActivity"></activity>
+        <!--设置页面-->
+        <activity
+            android:name=".activity.SettingActivity"
+            android:parentActivityName=".activity.MainActivity" />
+        <!--找回密码页面-->
+        <activity
+            android:name=".activity.login.PickUpPSDActivity"
+            android:parentActivityName=".activity.login.LoginActivity" />
+        <!--学习页面-->
+        <activity
+            android:name=".activity.study.StudyActivity"
+            android:parentActivityName=".activity.MainActivity" />
+        <!--排行榜页面-->
+        <activity
+            android:name=".activity.RankActivity"
+            android:parentActivityName=".activity.MainActivity"></activity>
     </application>
 
 </manifest>

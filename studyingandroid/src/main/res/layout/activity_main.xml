@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/login_bg"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context="com.beyondself.jalen.studyingandroid.activity.MainActivity">
@@ -11,42 +12,47 @@
         android:id="@+id/bt_answer_pattern"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/btn_image_sign_selector"
         android:text="简单问答模式"
         android:textColor="@color/black"
         android:textSize="25sp" />
 
     <Button
         android:id="@+id/bt_story_pattern"
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/btn_image_sign_selector"
         android:text="剧情模式"
         android:textColor="@color/black"
         android:textSize="25sp" />
 
     <Button
         android:id="@+id/bt_rank"
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/btn_image_sign_selector"
         android:text="排行版"
         android:textColor="@color/black"
         android:textSize="25sp" />
 
     <Button
         android:id="@+id/bt_setting"
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/btn_image_sign_selector"
         android:text="设置"
         android:textColor="@color/black"
         android:textSize="25sp" />
 
     <Button
         android:id="@+id/bt_login"
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/btn_image_sign_selector"
         android:text="登录"
         android:textColor="@color/black"
         android:textSize="25sp" />

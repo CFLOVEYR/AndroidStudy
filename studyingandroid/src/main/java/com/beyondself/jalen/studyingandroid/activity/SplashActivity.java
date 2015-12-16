@@ -8,7 +8,17 @@ import android.view.animation.Animation;
 import android.widget.Toast;
 
 import com.beyondself.jalen.studyingandroid.R;
+import com.beyondself.jalen.studyingandroid.dao.BookDao;
 import com.beyondself.jalen.studyingandroid.domain.Studyer;
+import com.beyondself.jalen.studyingandroid.domain.TestJava;
+import com.beyondself.jalen.studyingandroid.utils.DbUtils;
+import com.beyondself.jalen.studyingandroid.utils.LogUtils;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.listener.SaveListener;
@@ -21,6 +31,8 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         // 初始化 Bmob SDK
         Bmob.initialize(this, "9c5d53fc6f5d5e2e636ac65327bd029e");
+        //赋值数据库到data中去
+        DbUtils.copyDb(this, "book.db");
         //启动渐变动画
         AlphaAnimation alpha = new AlphaAnimation(0, 1);
         alpha.setDuration(2000);
@@ -45,6 +57,8 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
 }
 

@@ -18,7 +18,10 @@ import android.widget.Toast;
 import com.beyondself.jalen.studyingandroid.R;
 import com.beyondself.jalen.studyingandroid.base.BasePager;
 import com.beyondself.jalen.studyingandroid.base.ShowPager;
+import com.beyondself.jalen.studyingandroid.dao.BookDao;
 import com.beyondself.jalen.studyingandroid.domain.Studyer;
+import com.beyondself.jalen.studyingandroid.domain.TestJava;
+import com.beyondself.jalen.studyingandroid.utils.DbUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,7 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
     private Button bt_study_footer_save;
     private List<BasePager> list;
     private MyAdapter adapter;
+    private List<TestJava> testJavaList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +48,9 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
         initEvent();
     }
 
-    private void initEvent() {
-        bt_study_footer_previous.setOnClickListener(this);
-        bt_study_footer_next.setOnClickListener(this);
-
-    }
-
+    /**
+     * 初始化组件
+     */
     private void initView() {
         vp_study_content = (ViewPager) findViewById(R.id.vp_study_content);
         bt_study_footer_previous = (Button) findViewById(R.id.bt_study_footer_previous);
@@ -62,13 +63,22 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
      */
     private void initData() {
         list = new ArrayList<>();
+        testJavaList = BookDao.getAllData();
         //模拟十条数据
-        for (int i = 0; i < 10; i++) {
-            list.add(new BasePager(this));
+        for (int i = 0; i < testJavaList.size(); i++) {
+            BasePager pager = new BasePager(this);
+            pager.tv_top_question.setText(testJavaList.get(i).getTop_question());
+            pager.tv_code_question.setText(testJavaList.get(i).getCode_question());
+            pager.tv_bottom_question.setText(testJavaList.get(i).getBottom_question());
+            pager.tv_java_selectA.setText(testJavaList.get(i).getSelectA());
+            pager.tv_java_selectB.setText(testJavaList.get(i).getSelectB());
+            pager.tv_java_selectC.setText(testJavaList.get(i).getSelectC());
+            pager.tv_java_selectD.setText(testJavaList.get(i).getSelectD());
+            list.add(pager);
         }
         adapter = new MyAdapter();
         vp_study_content.setAdapter(adapter);
-        vp_study_content.setCurrentItem(0,false);//设置到第一页
+        vp_study_content.setCurrentItem(0, false);//设置到第一页
         /**
          *  ViewPager的事件监听
          */
@@ -108,7 +118,17 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
     }
 
     /**
+     * 初始化点击事件
+     */
+    private void initEvent() {
+        bt_study_footer_previous.setOnClickListener(this);
+        bt_study_footer_next.setOnClickListener(this);
+        bt_study_footer_save.setOnClickListener(this);
+    }
+
+    /**
      * 按钮的点击事件
+     *
      * @param v
      */
     @Override
@@ -134,6 +154,9 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    /**
+     * ViewPager的适配器
+     */
     class MyAdapter extends PagerAdapter {
 
         @Override

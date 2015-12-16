@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.beyondself.jalen.studyingandroid.R;
 import com.beyondself.jalen.studyingandroid.activity.login.LoginActivity;
@@ -35,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 初始化数据
      */
     private void initData() {
-
 
     }
 
@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.bt_story_pattern:
 
+                Toast.makeText(MainActivity.this, "努力开发中,敬请期待...", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.bt_rank:
                 startActivity(new Intent(MainActivity.this, RankActivity.class));

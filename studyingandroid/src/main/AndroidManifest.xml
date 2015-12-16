@@ -45,7 +45,9 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".activity.SettingActivity" />
-        <activity android:name=".activity.login.PickUpPSDActivity"></activity>
+        <activity android:name=".activity.login.PickUpPSDActivity" />
+        <activity android:name=".activity.StudyActivity" />
+        <activity android:name=".activity.RankActivity"></activity>
     </application>
 
 </manifest>

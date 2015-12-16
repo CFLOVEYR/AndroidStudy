@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 初始化数据
      */
     private void initData() {
-        
+
 
     }
 
@@ -67,15 +67,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.bt_answer_pattern:
-
+                startActivity(new Intent(MainActivity.this, StudyActivity.class));
                 break;
             case R.id.bt_story_pattern:
 
                 break;
             case R.id.bt_rank:
-
+                startActivity(new Intent(MainActivity.this, RankActivity.class));
                 break;
             case R.id.bt_setting:
                 startActivity(new Intent(MainActivity.this, SettingActivity.class));
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     ToastUtils.showToast(this, "已经登录了!!么么哒");
                 } else {
                     //缓存用户对象为空时， 可打开用户登录界面…
-                    startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 }
 
                 break;

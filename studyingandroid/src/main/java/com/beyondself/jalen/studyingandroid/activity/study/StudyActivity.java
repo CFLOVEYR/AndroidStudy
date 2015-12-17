@@ -8,6 +8,10 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -18,6 +22,7 @@ import com.beyondself.jalen.studyingandroid.base.BasePager;
 import com.beyondself.jalen.studyingandroid.dao.BookDao;
 import com.beyondself.jalen.studyingandroid.domain.Studyer;
 import com.beyondself.jalen.studyingandroid.domain.TestJava;
+import com.beyondself.jalen.studyingandroid.utils.ToastUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -61,6 +66,35 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
     }
 
     /**
+     * 菜单的操作
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    /**
+     * 菜单栏的点击事件
+     *
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_share:
+                ToastUtils.showToast(this, "分享", Toast.LENGTH_LONG);
+                break;
+            default:
+
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
      * 初始化组件
      */
     private void initView() {
@@ -94,7 +128,12 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
         }
         adapter = new MyAdapter();
         vp_study_content.setAdapter(adapter);
-        vp_study_content.setCurrentItem(0, false);//设置到第一页
+//        vp_study_content.setCurrentItem(0, false);//设置到第一页
+        /**
+         * 进入第一页就开始记录时间
+         */
+        flag = true;
+        getCurrentTime(0);
         /**
          *  ViewPager的事件监听
          */

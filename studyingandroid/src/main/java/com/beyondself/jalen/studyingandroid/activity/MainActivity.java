@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 BmobUser bmobUser = BmobUser.getCurrentUser(this);
                 if (bmobUser != null) {
                     // 允许用户使用应用,然后是自己的逻辑
-                    ToastUtils.showToast(this, "已经登录了!!么么哒");
+                    ToastUtils.showToast(this, "已经登录了!!么么哒",Toast.LENGTH_LONG);
                 } else {
                     //缓存用户对象为空时， 可打开用户登录界面…
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));

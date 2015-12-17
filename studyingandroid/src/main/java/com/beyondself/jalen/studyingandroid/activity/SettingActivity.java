@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.beyondself.jalen.studyingandroid.R;
 import com.beyondself.jalen.studyingandroid.activity.login.LoginActivity;
@@ -65,28 +66,28 @@ public class SettingActivity extends AppCompatActivity {
         ll_auto_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.showToast(SettingActivity.this, "自动更新设置");
+                ToastUtils.showToast(SettingActivity.this, "自动更新设置", Toast.LENGTH_SHORT);
             }
         });
         //应用推荐
         ll_app_recommond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.showToast(SettingActivity.this, "应用推荐");
+                ToastUtils.showToast(SettingActivity.this, "应用推荐", Toast.LENGTH_SHORT);
             }
         });
         //检查版本更新
         ll_check_version.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.showToast(SettingActivity.this, "检查版本更新");
+                ToastUtils.showToast(SettingActivity.this, "检查版本更新", Toast.LENGTH_SHORT);
             }
         });
         //关于作者
         ll_about_author.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.showToast(SettingActivity.this, "关于作者");
+                ToastUtils.showToast(SettingActivity.this, "关于作者", Toast.LENGTH_SHORT);
             }
         });
         /**
@@ -99,7 +100,7 @@ public class SettingActivity extends AppCompatActivity {
                 BmobUser bmobUser = BmobUser.getCurrentUser(SettingActivity.this);
                 if (bmobUser != null) {
                     // 允许用户使用应用,然后是自己的逻辑
-                    ToastUtils.showToast(SettingActivity.this, "即将进入个人信息");
+                    ToastUtils.showToast(SettingActivity.this, "即将进入个人信息", Toast.LENGTH_SHORT);
                     startActivity(new Intent(SettingActivity.this, UserInfoActivity.class));
 
                 } else {
@@ -115,7 +116,7 @@ public class SettingActivity extends AppCompatActivity {
                 BmobUser bmobUser = BmobUser.getCurrentUser(SettingActivity.this);
                 if (bmobUser != null) {
                     // 允许用户使用应用,然后是自己的逻辑
-                    ToastUtils.showToast(SettingActivity.this, "即将进入个人评论");
+                    ToastUtils.showToast(SettingActivity.this, "即将进入个人评论", Toast.LENGTH_SHORT);
                 } else {
                     //缓存用户对象为空时， 可打开用户登录界面…
                     startActivity(new Intent(SettingActivity.this, LoginActivity.class));
@@ -129,7 +130,7 @@ public class SettingActivity extends AppCompatActivity {
                 BmobUser bmobUser = BmobUser.getCurrentUser(SettingActivity.this);
                 if (bmobUser != null) {
                     // 允许用户使用应用,然后是自己的逻辑
-                    ToastUtils.showToast(SettingActivity.this, "即将进入个人收藏");
+                    ToastUtils.showToast(SettingActivity.this, "即将进入个人收藏", Toast.LENGTH_SHORT);
                 } else {
                     //缓存用户对象为空时， 可打开用户登录界面…
                     SettingActivity.this.startActivity(new Intent(SettingActivity.this, LoginActivity.class));
@@ -143,7 +144,7 @@ public class SettingActivity extends AppCompatActivity {
                 BmobUser bmobUser = BmobUser.getCurrentUser(SettingActivity.this);
                 if (bmobUser != null) {
                     // 允许用户使用应用,然后是自己的逻辑
-                    ToastUtils.showToast(SettingActivity.this, "即将进入图片加载设置");
+                    ToastUtils.showToast(SettingActivity.this, "即将进入图片加载设置", Toast.LENGTH_SHORT);
                 } else {
                     //缓存用户对象为空时， 可打开用户登录界面…
                     SettingActivity.this.startActivity(new Intent(SettingActivity.this, LoginActivity.class));
@@ -157,7 +158,7 @@ public class SettingActivity extends AppCompatActivity {
                 BmobUser bmobUser = BmobUser.getCurrentUser(SettingActivity.this);
                 if (bmobUser != null) {
                     // 允许用户使用应用,然后是自己的逻辑
-                    ToastUtils.showToast(SettingActivity.this, "即将进入消息提醒设置");
+                    ToastUtils.showToast(SettingActivity.this, "即将进入消息提醒设置", Toast.LENGTH_SHORT);
                 } else {
                     //缓存用户对象为空时， 可打开用户登录界面…
                     startActivity(new Intent(SettingActivity.this, LoginActivity.class));
@@ -171,7 +172,7 @@ public class SettingActivity extends AppCompatActivity {
                 BmobUser bmobUser = BmobUser.getCurrentUser(SettingActivity.this);
                 if (bmobUser != null) {
                     // 允许用户使用应用,然后是自己的逻辑
-                    ToastUtils.showToast(SettingActivity.this, "即将进入反馈意见");
+                    ToastUtils.showToast(SettingActivity.this, "即将进入反馈意见", Toast.LENGTH_SHORT);
                 } else {
                     //缓存用户对象为空时， 可打开用户登录界面…
                     startActivity(new Intent(SettingActivity.this, LoginActivity.class));
@@ -185,7 +186,7 @@ public class SettingActivity extends AppCompatActivity {
                 BmobUser bmobUser = BmobUser.getCurrentUser(SettingActivity.this);
                 if (bmobUser != null) {
                     // 允许用户使用应用,然后是自己的逻辑
-                    ToastUtils.showToast(SettingActivity.this, "即将进入分享给朋友");
+                    ToastUtils.showToast(SettingActivity.this, "即将进入分享给朋友", Toast.LENGTH_SHORT);
                 } else {
                     //缓存用户对象为空时， 可打开用户登录界面…
                     startActivity(new Intent(SettingActivity.this, LoginActivity.class));

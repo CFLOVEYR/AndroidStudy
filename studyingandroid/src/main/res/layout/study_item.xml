@@ -40,7 +40,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
                 android:layout_toLeftOf="@id/tv_toppager_number"
-                android:text="用时: 1:30"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
         </RelativeLayout>

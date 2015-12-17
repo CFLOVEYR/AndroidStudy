@@ -9,6 +9,7 @@
     tools:context="com.beyondself.jalen.studyingandroid.activity.MainActivity">
 
     <Button
+        android:layout_marginTop="30dp"
         android:id="@+id/bt_answer_pattern"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +22,7 @@
         android:id="@+id/bt_story_pattern"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/btn_image_sign_selector"
         android:text="剧情模式"
         android:textColor="@color/black"
@@ -31,7 +32,7 @@
         android:id="@+id/bt_rank"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/btn_image_sign_selector"
         android:text="排行版"
         android:textColor="@color/black"
@@ -41,7 +42,7 @@
         android:id="@+id/bt_setting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/btn_image_sign_selector"
         android:text="设置"
         android:textColor="@color/black"
@@ -51,7 +52,7 @@
         android:id="@+id/bt_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/btn_image_sign_selector"
         android:text="登录"
         android:textColor="@color/black"

@@ -1,29 +1,27 @@
 package com.beyondself.jalen.studyingandroid.activity.study;
 
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.SystemClock;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.beyondself.jalen.studyingandroid.R;
 import com.beyondself.jalen.studyingandroid.base.BasePager;
-import com.beyondself.jalen.studyingandroid.base.ShowPager;
 import com.beyondself.jalen.studyingandroid.dao.BookDao;
 import com.beyondself.jalen.studyingandroid.domain.Studyer;
 import com.beyondself.jalen.studyingandroid.domain.TestJava;
-import com.beyondself.jalen.studyingandroid.utils.DbUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import cn.bmob.v3.listener.SaveListener;
@@ -38,6 +36,20 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
     private List<BasePager> list;
     private MyAdapter adapter;
     private List<TestJava> testJavaList;
+    private boolean flag;
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == 0) {
+                Bundle b = (Bundle) msg.obj;
+                String time = b.getString("result");
+                int position = b.getInt("position");
+                list.get(position).tv_toppager_time.setText(time);
+            }
+        }
+    };
+    private long startTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +78,10 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
         testJavaList = BookDao.getAllData();
         //模拟十条数据
         for (int i = 0; i < testJavaList.size(); i++) {
+            /**
+             * 记录进入的事件
+             */
+            startTime = System.currentTimeMillis();
             BasePager pager = new BasePager(this);
             pager.tv_top_question.setText(testJavaList.get(i).getTop_question());
             pager.tv_code_question.setText(testJavaList.get(i).getCode_question());
@@ -90,8 +106,15 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onPageSelected(int position) {
+                //设置页码
                 list.get(position).tv_toppager_number.setText(position + 1 + "/" + list.size());
-//                adapter.notifyDataSetChanged();
+                //设置时间的内容
+                if (position == list.size() - 1) {
+                    flag = false;
+                } else {
+                    flag = true;
+                }
+                getCurrentTime(position);
                 if (position == list.size() - 1) {
                     bt_study_footer_next.setVisibility(View.GONE);
                     bt_study_footer_previous.setVisibility(View.GONE);
@@ -118,6 +141,35 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
     }
 
     /**
+     * 返回计时时间
+     *
+     * @return
+     */
+    private void getCurrentTime(final int position) {
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                while (flag) {
+                    SystemClock.sleep(1000);
+                    long endTime = System.currentTimeMillis();
+                    long time = endTime - startTime;
+                    String result = new SimpleDateFormat("mm:ss").format(new Date(time));
+                    Message message = handler.obtainMessage();
+                    message.what = 0;
+                    Bundle b = new Bundle();
+                    b.putString("result", result);
+                    b.putInt("position", position);
+                    message.obj = b;
+                    handler.sendMessage(message);
+                }
+            }
+        }.start();
+
+    }
+
+
+    /**
      * 初始化点击事件
      */
     private void initEvent() {
@@ -135,17 +187,17 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         int currentItem = vp_study_content.getCurrentItem();
         switch (v.getId()) {
-            case R.id.bt_study_footer_previous:
+            case R.id.bt_study_footer_previous://上一题
                 if (currentItem != 0) {
                     vp_study_content.setCurrentItem(--currentItem, false);//去掉动画
                 }
                 break;
-            case R.id.bt_study_footer_next:
+            case R.id.bt_study_footer_next://下一题
                 if (currentItem != list.size() - 1) {
                     vp_study_content.setCurrentItem(++currentItem, false);//去掉动画
                 }
                 break;
-            case R.id.bt_study_footer_save:
+            case R.id.bt_study_footer_save://保存数据的方法
                 saveInfo("10", "30");
                 break;
             default:

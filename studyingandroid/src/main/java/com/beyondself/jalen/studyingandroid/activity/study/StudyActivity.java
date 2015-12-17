@@ -30,6 +30,7 @@ import java.util.Date;
 import java.util.List;
 
 import cn.bmob.v3.listener.SaveListener;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 
 public class StudyActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -86,6 +87,18 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
         switch (item.getItemId()) {
             case R.id.action_share:
                 ToastUtils.showToast(this, "分享", Toast.LENGTH_LONG);
+                /**
+                 *  分享功能
+                 */
+                OnekeyShare oks = new OnekeyShare();
+                oks.setTitle("轻轻松松学习Android");
+                oks.setText("Android私塾是你最好的选择!!");
+                oks.setTitleUrl("http://studyandroid.bmob.cn/");
+                oks.setImageUrl("http://f1.sharesdk.cn/imgs/2014/05/21/oESpJ78_533x800.jpg");
+                //关闭sso授权
+                oks.disableSSOWhenAuthorize();
+                // 启动分享GUI
+                oks.show(this);
                 break;
             default:
 

@@ -6,15 +6,6 @@
     android:orientation="vertical"
     tools:context=".activity.RankActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="#aa00ff00"
-        android:gravity="center"
-        android:text="排行版"
-        android:textColor="@color/black"
-        android:textSize="25sp" />
-
     <ListView
         android:id="@+id/lv_rank"
         android:layout_width="match_parent"

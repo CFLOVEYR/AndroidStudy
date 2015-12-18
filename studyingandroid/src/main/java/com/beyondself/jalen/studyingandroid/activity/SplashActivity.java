@@ -14,6 +14,9 @@ import com.beyondself.jalen.studyingandroid.domain.TestJava;
 import com.beyondself.jalen.studyingandroid.utils.DbUtils;
 import com.beyondself.jalen.studyingandroid.utils.LogUtils;
 
+import net.youmi.android.AdManager;
+import net.youmi.android.offers.OffersManager;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -33,6 +36,14 @@ public class SplashActivity extends AppCompatActivity {
         // 初始化 Bmob SDK
         Bmob.initialize(this, "9c5d53fc6f5d5e2e636ac65327bd029e");
         BmobPush.startWork(this, "9c5d53fc6f5d5e2e636ac65327bd029e");
+        /**
+         * 初始化有米广告
+         *  isTestModel(第三个参数) : 是否开启测试模式，
+         *  true 为是，false 为否。（上传有米审核及发布到市场版本，请设置为 false）
+         *
+         */
+        AdManager.getInstance(this).init("2cd6624e59f28e2b", "10b04dddae76e760", true);
+        OffersManager.getInstance(this).onAppLaunch();       //积分墙
         //赋值数据库到data中去
         DbUtils.copyDb(this, "book.db");
         //启动渐变动画
@@ -59,7 +70,6 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
     }
-
 
 
 }

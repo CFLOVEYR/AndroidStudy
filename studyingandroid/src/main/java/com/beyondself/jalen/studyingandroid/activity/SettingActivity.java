@@ -1,5 +1,6 @@
 package com.beyondself.jalen.studyingandroid.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,9 @@ import com.beyondself.jalen.studyingandroid.activity.login.UpdateUserInfoActivit
 import com.beyondself.jalen.studyingandroid.activity.login.UserInfoActivity;
 import com.beyondself.jalen.studyingandroid.domain.UserInfo;
 import com.beyondself.jalen.studyingandroid.utils.ToastUtils;
+
+import net.youmi.android.listener.Interface_ActivityListener;
+import net.youmi.android.offers.OffersManager;
 
 import cn.bmob.v3.BmobUser;
 import cn.sharesdk.onekeyshare.OnekeyShare;
@@ -37,6 +41,7 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+        setTitle("设置中心");
         initView();
         initListener();
     }
@@ -76,6 +81,14 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ToastUtils.showToast(SettingActivity.this, "应用推荐", Toast.LENGTH_SHORT);
+                /**
+                 * 全屏广告
+                 */
+                showFullWallGG();
+                /**
+                 * 半屏悬浮广告
+                 */
+//                showHalfScreenGG();
             }
         });
         //检查版本更新
@@ -222,5 +235,66 @@ public class SettingActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * 显示半屏悬浮广告
+     */
+    private void showHalfScreenGG() {
+        OffersManager.getInstance(SettingActivity.this).showOffersWallDialog(new SettingActivity());
 
+//// 同时本方法还支持以下重载
+//
+//// 传入对话框关闭监听器
+//        OffersManager.getInstance(Context context).showOffersWallDialog(Activity activity, OffersWallDialogListener listener);
+//
+//// 传入对话框宽高像素
+//        OffersManager.getInstance(Context context).showOffersWallDialog(Activity activity, int width, int height);
+//
+//// 传入对话框宽高像素以及关闭监听器
+//        OffersManager.getInstance(Context context).showOffersWallDialog(Activity activity, int width, int height, OffersWallDialogListener listener);
+//
+//// 传入对话框宽高所占屏幕比例（0~1）
+//        OffersManager.getInstance(Context context).showOffersWallDialog(Activity activity, double scaleOfScreenWidth, double scaleOfScreenHeight);
+//
+//// 传入对话框宽高所占屏幕比例（0~1）以及关闭监听器
+//        OffersManager.getInstance(Context context).showOffersWallDialog(Activity activity, double scaleOfScreenWidth, double scaleOfScreenHeight, OffersWallDialogListener listener);
+    }
+
+    /**
+     * 显示全屏广告
+     */
+    private void showFullWallGG() {
+        //第一种方法
+        //OffersManager.getInstance(SettingActivity.this).showOffersWall();
+        // 第二种方法
+        // 自 Youmi Android OfferWall SDK v5.0.0 起, 支持全屏积分墙退出监听回调
+        OffersManager.getInstance(SettingActivity.this).showOffersWall(new net.youmi.android.listener.Interface_ActivityListener() {
+            @Override
+            public void onActivityDestroy(Context context) {
+                //销毁广告
+                OffersManager.getInstance(SettingActivity.this).onAppExit();
+            }
+        });
+    }
+
+    /**
+     * 半屏悬浮对话框回调接口
+     */
+    public interface OffersWallDialogListener {
+
+        /**
+         * 对话框关闭时回调
+         */
+        public void onDialogClose();
+    }
+
+    /**
+     * 有米广告销毁的操作回调接口
+     */
+    public interface Interface_ActivityListener {
+
+        /**
+         * 全屏积分墙Activity 调用onDestory的时候回调，执行在ui线程中
+         */
+        public void onActivityDestroy();
+    }
 }

@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
-    <!--分享添加的权限-->
+    <!-- 分享添加的权限 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -29,7 +29,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--闪屏页面-->
+        <!-- 闪屏页面 -->
         <activity
             android:name=".activity.SplashActivity"
             android:theme="@style/MyTheme">
@@ -39,42 +39,42 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--主页面-->
+        <!-- 主页面 -->
         <activity android:name=".activity.MainActivity" />
-        <!--登录页面-->
+        <!-- 登录页面 -->
         <activity
             android:name=".activity.login.LoginActivity"
             android:parentActivityName=".activity.MainActivity" />
-        <!--注册页面-->
+        <!-- 注册页面 -->
         <activity
             android:name=".activity.login.RegisterActivity"
             android:parentActivityName=".activity.login.LoginActivity" />
-        <!--用户信息页面-->
+        <!-- 用户信息页面 -->
         <activity
             android:name=".activity.login.UserInfoActivity"
             android:parentActivityName=".activity.MainActivity" />
-        <!--更改用户信息页面-->
+        <!-- 更改用户信息页面 -->
         <activity
             android:name=".activity.login.UpdateUserInfoActivity"
             android:parentActivityName=".activity.login.UserInfoActivity" />
 
-        <!--设置页面-->
+        <!-- 设置页面 -->
         <activity
             android:name=".activity.SettingActivity"
             android:parentActivityName=".activity.MainActivity" />
-        <!--找回密码页面-->
+        <!-- 找回密码页面 -->
         <activity
             android:name=".activity.login.PickUpPSDActivity"
             android:parentActivityName=".activity.login.LoginActivity" />
-        <!--学习页面-->
+        <!-- 学习页面 -->
         <activity
             android:name=".activity.study.StudyActivity"
             android:parentActivityName=".activity.MainActivity" />
-        <!--排行榜页面-->
+        <!-- 排行榜页面 -->
         <activity
             android:name=".activity.RankActivity"
-            android:parentActivityName=".activity.MainActivity"></activity>
-        <!--一键分享功能-->
+            android:parentActivityName=".activity.MainActivity" />
+        <!-- 一键分享功能 -->
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -83,13 +83,14 @@
             android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
                 <data android:scheme="tencent100371282" />
+
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <!--调用微信-->
+        <!-- 调用微信 -->
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -97,16 +98,34 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-
         <!-- 调用新浪原生SDK，需要注册的回调activity -->
         <activity
             android:name="cn.sharesdk.sina.weibo.SinaActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- 反馈信息 -->
+        <activity
+            android:name=".activity.feedback.FeedActivity"
+            android:parentActivityName=".activity.SettingActivity" />
+        <!-- 展示反馈信息 -->
+        <activity
+            android:name=".activity.feedback.ShowFeedBackActivity"
+            android:parentActivityName=".activity.feedback.FeedActivity" />
+        <!-- 展示详细反馈信息 -->
+        <activity
+            android:name=".activity.feedback.ShowFeedBackDetailActivity"
+            android:parentActivityName=".activity.feedback.ShowFeedBackActivity" />
+        <!-- 关于作者的界面 -->
+        <activity
+            android:name=".activity.AboutAuthorActivity"
+            android:parentActivityName=".activity.SettingActivity" />
+
+
     </application>
 
 </manifest>

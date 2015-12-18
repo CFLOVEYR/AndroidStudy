@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.beyondself.jalen.studyingandroid.R;
+import com.beyondself.jalen.studyingandroid.activity.feedback.FeedActivity;
 import com.beyondself.jalen.studyingandroid.activity.login.LoginActivity;
 import com.beyondself.jalen.studyingandroid.activity.login.UpdateUserInfoActivity;
 import com.beyondself.jalen.studyingandroid.activity.login.UserInfoActivity;
@@ -16,6 +17,7 @@ import com.beyondself.jalen.studyingandroid.domain.UserInfo;
 import com.beyondself.jalen.studyingandroid.utils.ToastUtils;
 
 import cn.bmob.v3.BmobUser;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 
 public class SettingActivity extends AppCompatActivity {
     private LinearLayout ll_personal_info;
@@ -87,7 +89,8 @@ public class SettingActivity extends AppCompatActivity {
         ll_about_author.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.showToast(SettingActivity.this, "关于作者", Toast.LENGTH_SHORT);
+//                ToastUtils.showToast(SettingActivity.this, "关于作者", Toast.LENGTH_SHORT);
+                startActivity(new Intent(SettingActivity.this, AboutAuthorActivity.class));
             }
         });
         /**
@@ -173,6 +176,7 @@ public class SettingActivity extends AppCompatActivity {
                 if (bmobUser != null) {
                     // 允许用户使用应用,然后是自己的逻辑
                     ToastUtils.showToast(SettingActivity.this, "即将进入反馈意见", Toast.LENGTH_SHORT);
+                    startActivity(new Intent(SettingActivity.this, FeedActivity.class));
                 } else {
                     //缓存用户对象为空时， 可打开用户登录界面…
                     startActivity(new Intent(SettingActivity.this, LoginActivity.class));
@@ -186,10 +190,23 @@ public class SettingActivity extends AppCompatActivity {
                 BmobUser bmobUser = BmobUser.getCurrentUser(SettingActivity.this);
                 if (bmobUser != null) {
                     // 允许用户使用应用,然后是自己的逻辑
-                    ToastUtils.showToast(SettingActivity.this, "即将进入分享给朋友", Toast.LENGTH_SHORT);
+//                    ToastUtils.showToast(SettingActivity.this, "即将进入分享给朋友", Toast.LENGTH_SHORT);
+                    /**
+                     *  分享功能
+                     */
+                    OnekeyShare oks = new OnekeyShare();
+                    oks.setTitle("轻轻松松学习Android");
+                    oks.setText("Android私塾是你最好的选择!!");
+                    oks.setTitleUrl("http://studyandroid.bmob.cn/");
+                    oks.setImageUrl("http://f1.sharesdk.cn/imgs/2014/05/21/oESpJ78_533x800.jpg");
+                    //关闭sso授权
+                    oks.disableSSOWhenAuthorize();
+                    // 启动分享GUI
+                    oks.show(SettingActivity.this);
                 } else {
                     //缓存用户对象为空时， 可打开用户登录界面…
                     startActivity(new Intent(SettingActivity.this, LoginActivity.class));
+
                 }
             }
         });
@@ -204,7 +221,6 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
     }
-
 
 
 }

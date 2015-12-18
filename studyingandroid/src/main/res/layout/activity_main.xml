@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_image_sign_selector"
-        android:text="简单问答模式"
+        android:text="练功房"
         android:textColor="@color/black"
         android:textSize="25sp" />
 
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/btn_image_sign_selector"
-        android:text="剧情模式"
+        android:text="开始征途"
         android:textColor="@color/black"
         android:textSize="25sp" />
 
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/btn_image_sign_selector"
-        android:text="排行版"
+        android:text="英雄榜"
         android:textColor="@color/black"
         android:textSize="25sp" />
 
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/btn_image_sign_selector"
-        android:text="设置"
+        android:text="设置中心"
         android:textColor="@color/black"
         android:textSize="25sp" />
 
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/btn_image_sign_selector"
-        android:text="登录"
+        android:text="雁过留名"
         android:textColor="@color/black"
         android:textSize="25sp" />
 </LinearLayout>

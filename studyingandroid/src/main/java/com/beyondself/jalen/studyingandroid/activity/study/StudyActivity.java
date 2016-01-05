@@ -8,7 +8,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -123,20 +122,25 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
     private void initData() {
         list = new ArrayList<>();
         testJavaList = BookDao.getAllData();
-        //模拟十条数据
-        for (int i = 0; i < testJavaList.size(); i++) {
+        //从数据库得到题库,然后+1,是为了展示答题情况
+        for (int i = 0; i < testJavaList.size() + 1; i++) {
             /**
              * 记录进入的事件
              */
             startTime = System.currentTimeMillis();
             BasePager pager = new BasePager(this);
-            pager.tv_top_question.setText(testJavaList.get(i).getTop_question());
-            pager.tv_code_question.setText(testJavaList.get(i).getCode_question());
-            pager.tv_bottom_question.setText(testJavaList.get(i).getBottom_question());
-            pager.tv_java_selectA.setText(testJavaList.get(i).getSelectA());
-            pager.tv_java_selectB.setText(testJavaList.get(i).getSelectB());
-            pager.tv_java_selectC.setText(testJavaList.get(i).getSelectC());
-            pager.tv_java_selectD.setText(testJavaList.get(i).getSelectD());
+            if (i < testJavaList.size()) {
+                pager.tv_top_question.setText(testJavaList.get(i).getTop_question());
+                pager.tv_code_question.setText(testJavaList.get(i).getCode_question());
+                pager.tv_bottom_question.setText(testJavaList.get(i).getBottom_question());
+                pager.tv_java_selectA.setText(testJavaList.get(i).getSelectA());
+                pager.tv_java_selectB.setText(testJavaList.get(i).getSelectB());
+                pager.tv_java_selectC.setText(testJavaList.get(i).getSelectC());
+                pager.tv_java_selectD.setText(testJavaList.get(i).getSelectD());
+            } else {
+                pager.ll_answer_study.setVisibility(View.GONE);
+                pager.rl_study_show.setVisibility(View.VISIBLE);
+            }
             list.add(pager);
         }
         adapter = new MyAdapter();
@@ -167,7 +171,7 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
                     flag = true;
                 }
                 getCurrentTime(position);
-                if (position == list.size() - 1) {
+                if (position == list.size()-1) {
                     bt_study_footer_next.setVisibility(View.GONE);
                     bt_study_footer_previous.setVisibility(View.GONE);
                     bt_study_footer_save.setVisibility(View.VISIBLE);
@@ -263,9 +267,10 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
      */
     class MyAdapter extends PagerAdapter {
 
+
         @Override
         public int getCount() {
-            return list.size();
+            return list.size() ;
         }
 
         @Override
@@ -275,8 +280,10 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            container.addView(list.get(position).mRootView);
-            return list.get(position).mRootView;
+            View mRootView = null;
+            mRootView = list.get(position).mRootView;
+            container.addView(mRootView);
+            return mRootView;
         }
 
         @Override

@@ -19,3 +19,5 @@
 -keep class net.youmi.android.** {
     *;
 }
+-keep class com.iflytek.**{*;}
+

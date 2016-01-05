@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context="com.beyondself.jalen.studyingandroid.activity.login.UserInfoActivity">
+    <!--用户头像 圆角-->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/icon"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="2dp"></de.hdodenhof.circleimageview.CircleImageView>
 
     <LinearLayout
 
@@ -148,12 +160,12 @@
         android:layout_marginTop="10dp">
 
         <Button
-            android:onClick="jump_update_Userinfo"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:background="@drawable/btn_image_sign_selector"
             android:gravity="center"
+            android:onClick="jump_update_Userinfo"
             android:text="修改个人信息"
             android:textColor="#000"
             android:textSize="20sp" />

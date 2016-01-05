@@ -31,5 +31,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile files('libs/YoumiSdk_v5.3.3_2015-10-10.jar')
     compile files('libs/Msc.jar')
-    compile 'de.hdodenhof:circleimageview:2.0.0'//圆角图片的依赖
+    compile 'de.hdodenhof:circleimageview:2.0.0'
+    //圆角图片的依赖
+    compile project(':PullToRefreshLibrary')
 }

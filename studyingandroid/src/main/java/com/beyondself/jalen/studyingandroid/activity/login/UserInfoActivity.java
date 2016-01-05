@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.beyondself.jalen.studyingandroid.R;
 import com.beyondself.jalen.studyingandroid.domain.UserInfo;
+import com.beyondself.jalen.studyingandroid.view.PullToZoomListView;
 
 import cn.bmob.v3.BmobUser;
 
@@ -23,6 +26,10 @@ private TextView tv_user_name;
     private TextView tv_user_pnumber;
     private ToggleButton tb_user_email_bd;
     private ToggleButton tb_user_pnumber_bd;
+    PullToZoomListView listView;
+    private String[] adapterData;
+    private View footview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,14 +40,27 @@ private TextView tv_user_name;
 
 
     private void initView() {
-        tv_user_name = (TextView) findViewById(R.id.tv_user_name);
-        tv_user_age = (TextView) findViewById(R.id.tv_user_age);
-        tv_user_sex = (TextView) findViewById(R.id.tv_user_sex);
-        tv_user_description = (TextView) findViewById(R.id.tv_user_description);
-        tv_user_email = (TextView) findViewById(R.id.tv_user_email);
-        tv_user_pnumber = (TextView) findViewById(R.id.tv_user_pnumber);
-        tb_user_email_bd = (ToggleButton) findViewById(R.id.tb_user_email_bd);
-        tb_user_pnumber_bd = (ToggleButton) findViewById(R.id.tb_user_pnumber_bd);
+
+        listView = (PullToZoomListView)findViewById(R.id.listview);
+        listView.setDividerHeight(0);//去掉分割线
+        listView.setClickable(false);
+        adapterData = new String[] { ""};
+        listView.setAdapter(new ArrayAdapter<String>(UserInfoActivity.this,
+                android.R.layout.simple_list_item_1, adapterData));
+        //头部布局
+        listView.getHeaderView().setImageResource(R.mipmap.splash01);
+        listView.getHeaderView().setScaleType(ImageView.ScaleType.CENTER_CROP);
+        //底部布局
+        footview = View.inflate(UserInfoActivity.this, R.layout.activity_user_footview, null);
+        listView.addFooterView(footview);
+        tv_user_name = (TextView) footview.findViewById(R.id.tv_user_name);
+        tv_user_age = (TextView) footview.findViewById(R.id.tv_user_age);
+        tv_user_sex = (TextView) footview.findViewById(R.id.tv_user_sex);
+        tv_user_description = (TextView) footview.findViewById(R.id.tv_user_description);
+        tv_user_email = (TextView) footview.findViewById(R.id.tv_user_email);
+        tv_user_pnumber = (TextView) footview.findViewById(R.id.tv_user_pnumber);
+        tb_user_email_bd = (ToggleButton) footview.findViewById(R.id.tb_user_email_bd);
+        tb_user_pnumber_bd = (ToggleButton) footview.findViewById(R.id.tb_user_pnumber_bd);
     }
 
     private void initData() {

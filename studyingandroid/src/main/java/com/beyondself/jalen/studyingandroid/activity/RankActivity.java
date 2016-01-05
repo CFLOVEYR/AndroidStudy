@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.beyondself.jalen.studyingandroid.R;
 import com.beyondself.jalen.studyingandroid.domain.Studyer;
 import com.beyondself.jalen.studyingandroid.domain.UserInfo;
+import com.yalantis.phoenix.PullToRefreshView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,9 @@ public class RankActivity extends AppCompatActivity {
 
     private List<Studyer> list;
     private ListView lv_rank;
+
+    private PullToRefreshView mPullToRefreshView;
+    public static final int REFRESH_DELAY = 2000;
     private MyAdapter adapter;
 
     @Override
@@ -33,6 +37,23 @@ public class RankActivity extends AppCompatActivity {
         setTitle("英雄榜");
         initView();
         initData();
+
+    }
+
+    private void initView() {
+        lv_rank = (ListView) findViewById(R.id.lv_rank);
+        mPullToRefreshView = (PullToRefreshView) findViewById(R.id.pull_to_refresh);
+        mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPullToRefreshView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPullToRefreshView.setRefreshing(false);
+                    }
+                }, REFRESH_DELAY);
+            }
+        });
     }
 
     private void initData() {
@@ -65,9 +86,6 @@ public class RankActivity extends AppCompatActivity {
 
     }
 
-    private void initView() {
-        lv_rank = (ListView) findViewById(R.id.lv_rank);
-    }
 
     class MyAdapter extends BaseAdapter {
 

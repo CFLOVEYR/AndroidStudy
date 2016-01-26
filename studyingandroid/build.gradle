@@ -34,4 +34,5 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.0.0'
     //圆角图片的依赖
     compile project(':PullToRefreshLibrary')
+    compile files('libs/cocos2d-android.jar')
 }

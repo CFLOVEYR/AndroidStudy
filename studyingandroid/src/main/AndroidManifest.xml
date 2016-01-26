@@ -27,8 +27,10 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <!-- 读取联系人权限，上传联系人需要用到此权限 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
 
     <application
+        android:name=".aplication.APP"
         android:allowBackup="true"
         android:icon="@mipmap/ic_lan"
         android:label="@string/app_name"
@@ -130,8 +132,9 @@
         <activity
             android:name=".activity.main.AboutAuthorActivity"
             android:parentActivityName=".activity.main.SettingActivity" />
-
-
+        <activity android:name=".activity.study.InterViewActivity" />
+        <activity android:name=".activity.main.BaseActivity" />
+        <activity android:name=".activity.study.InterViewShowActivity"></activity>
     </application>
 
 </manifest>

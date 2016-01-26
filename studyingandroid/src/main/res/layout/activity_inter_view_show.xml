@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.beyondself.jalen.studyingandroid.activity.study.InterViewShowActivity">
+
+    <ScrollView
+        android:layout_marginBottom="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!--标题-->
+            <TextView
+                android:id="@+id/tv_interview_show_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="详细说明一下Activity的生命周期"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+            <!--内容-->
+            <TextView
+                android:id="@+id/tv_interview_show_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:text="复用convertview, 历史的view对象
+异步加载数据,  分页加载数据,onscallLinster();
+Static class ViewHolder
+使用静态的view对象避免创建过多的view.
+把下载后的数据缓存到数据库里
+客户端和服务器协同作战 .
+Http 请求
+If-modify-since : 检查数据是否更新  1.html 2001年  302 拿缓存"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/gray"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_remark_write"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="评论"
+            android:textColor="@color/red"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/iv_remark_read"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/remark_off" />
+
+        <ImageView
+            android:id="@+id/iv_collected"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/star_off" />
+
+        <ImageView
+            android:id="@+id/iv_share"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/icon_share" />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -26,16 +26,12 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile files('libs/BmobSDK_V3.4.5_1111.jar')
     compile files('libs/Msc.jar')
-    compile 'de.hdodenhof:circleimageview:2.0.0'
     //圆角图片的依赖
+    compile 'de.hdodenhof:circleimageview:2.0.0'
+    //下拉刷新,加载更多的sample
     compile project(':PullToRefreshLibrary')
+    //分享
     compile files('libs/MobCommons.jar')
     compile files('libs/MobTools.jar')
-    compile files('libs/ShareSDK-Core-2.6.5.jar')
-    compile files('libs/ShareSDK-QQ-2.6.5.jar')
-    compile files('libs/ShareSDK-QZone-2.6.5.jar')
-    compile files('libs/ShareSDK-SinaWeibo-2.6.5.jar')
-    compile files('libs/ShareSDK-Wechat-2.6.5.jar')
-    compile files('libs/ShareSDK-Wechat-Core-2.6.5.jar')
-    compile files('libs/ShareSDK-Wechat-Moments-2.6.5.jar')
+    compile project(':ListViewLibrary')
 }

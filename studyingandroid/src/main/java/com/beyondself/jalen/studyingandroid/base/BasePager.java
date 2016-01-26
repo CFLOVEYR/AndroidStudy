@@ -22,6 +22,7 @@ public class BasePager {
     public RelativeLayout rl_study_show;
     public TextView tv_top_title;
     public EditText et_study_content;
+    public EditText et_study_content1;
     public Button bt_study_putanswer;
     public TextView tv_look_other;
 
@@ -35,7 +36,7 @@ public class BasePager {
         tv_toppager_number = (TextView) view.findViewById(R.id.tv_toppager_number);//记录是哪一页
         tv_toppager_time = (TextView) view.findViewById(R.id.tv_toppager_time);//记录用时时间
         tv_top_title = (TextView) view.findViewById(R.id.tv_top_title);//问题描述-上
-        et_study_content = (EditText) view.findViewById(R.id.et_study_content);//问题回答内容
+        et_study_content1 = (EditText) view.findViewById(R.id.et_study_content);//问题回答内容
         bt_study_putanswer = (Button) view.findViewById(R.id.bt_study_putanswer);//提交按钮
         tv_look_other = (TextView) view.findViewById(R.id.tv_look_other);//查看其它人回答
         ll_answer_study = (LinearLayout) view.findViewById(R.id.ll_answer_study);//回答模块的形式

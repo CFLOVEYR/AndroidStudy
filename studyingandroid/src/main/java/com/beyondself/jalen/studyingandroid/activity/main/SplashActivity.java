@@ -7,7 +7,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
 import com.beyondself.jalen.studyingandroid.R;
-import com.beyondself.jalen.studyingandroid.utils.DbUtils;
+import com.beyondself.jalen.studyingandroid.utils.LocalDbUtils;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
 
@@ -22,7 +22,7 @@ public class SplashActivity extends AppCompatActivity {
         //初始化用到的第三方组件
         initSDK();
         //赋值数据库到data中去
-        DbUtils.copyDb(this, "book.db");
+        LocalDbUtils.copyDb(this, "book.db");
         //启动渐变动画
         AlphaAnimation alpha = new AlphaAnimation(0, 1);
         alpha.setDuration(2000);

@@ -1,12 +1,9 @@
 package com.beyondself.jalen.studyingandroid.utils;
 
 import android.content.Context;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.beyondself.jalen.studyingandroid.R;
+import com.beyondself.jalen.studyingandroid.aplication.APP;
 
 /**
  * 弹出框的工具类
@@ -29,6 +26,17 @@ public class ToastUtils {
 //        toast.setDuration(time);//设置显示时间
 //        toast.setView(layout);
 //        toast.show();
+    }
+
+    private ToastUtils() {
+    }
+
+    public static void show(CharSequence text) {
+        if (text.length() < 10) {
+            Toast.makeText(APP.getInstance(), text, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(APP.getInstance(), text, Toast.LENGTH_LONG).show();
+        }
     }
 
 }

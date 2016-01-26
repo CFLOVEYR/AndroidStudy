@@ -10,7 +10,7 @@ import java.io.InputStream;
 /**
  * Created by Jalen on 2015/12/16.
  */
-public class DbUtils {
+public class LocalDbUtils {
     /**
      * 复制数据库到本地文件中
      * @param context

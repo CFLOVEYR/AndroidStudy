@@ -18,32 +18,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
-
-        <!--<Button-->
-            <!--android:id="@+id/bt_study_footer_previous"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@drawable/btn_image_sign_selector"-->
-            <!--android:gravity="center"-->
-            <!--android:text="上一题"-->
-            <!--android:visibility="gone"-->
-            <!--android:textColor="@color/black" />-->
-
-        <!--<Button-->
-            <!--android:layout_marginLeft="10dp"-->
-            <!--android:id="@+id/bt_study_footer_next"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@drawable/btn_image_sign_selector"-->
-            <!--android:gravity="center"-->
-            <!--android:text="下一题"-->
-            <!--android:textColor="@color/black" />-->
         <Button
             android:id="@+id/bt_study_footer_save"
-            android:visibility="gone"
             android:layout_width="0dp"
+            android:visibility="gone"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:background="@drawable/btn_image_sign_selector"

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.beyondself.jalen.studyingandroid.R;
 import com.beyondself.jalen.studyingandroid.activity.login.LoginActivity;
+import com.beyondself.jalen.studyingandroid.activity.study.InterViewActivity;
 import com.beyondself.jalen.studyingandroid.activity.study.StudyActivity;
 import com.beyondself.jalen.studyingandroid.utils.ToastUtils;
 import com.iflytek.cloud.RecognizerListener;
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.bt_story_pattern:
 //                Toast.makeText(MainActivity.this, "努力开发中,敬请期待...", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, InterViewActivity.class));
                 break;
             case R.id.bt_rank:
                 startActivity(new Intent(MainActivity.this, RankActivity.class));

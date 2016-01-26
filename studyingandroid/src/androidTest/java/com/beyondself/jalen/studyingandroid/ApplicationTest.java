@@ -2,8 +2,10 @@ package com.beyondself.jalen.studyingandroid;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
+import android.util.Log;
 
 import com.beyondself.jalen.studyingandroid.dao.BookDao;
+import com.beyondself.jalen.studyingandroid.domain.InterView;
 import com.beyondself.jalen.studyingandroid.domain.TestJava;
 import com.beyondself.jalen.studyingandroid.utils.LogUtils;
 
@@ -18,6 +20,12 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
     }
     public void testDbDAO(){
         List<TestJava> list = BookDao.getAllData();
-        LogUtils.i("Test", list.size()+"");
+        LogUtils.i("Test", list.size() + "");
+    }
+
+    public void testDbDAO1(){
+        List<InterView> list = BookDao.getInterViewData();
+//        LogUtils.e("Test", list.toString()+"");
+        Log.e("Test",list.toString());
     }
 }

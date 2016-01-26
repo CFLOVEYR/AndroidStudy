@@ -6,7 +6,6 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,6 +16,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.beyondself.jalen.studyingandroid.R;
+import com.beyondself.jalen.studyingandroid.activity.main.BaseActivity;
 import com.beyondself.jalen.studyingandroid.base.BasePager;
 import com.beyondself.jalen.studyingandroid.dao.BookDao;
 import com.beyondself.jalen.studyingandroid.domain.Studyer;
@@ -31,7 +31,7 @@ import java.util.List;
 import cn.bmob.v3.listener.SaveListener;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
-public class StudyActivity extends AppCompatActivity implements View.OnClickListener {
+public class StudyActivity extends BaseActivity implements View.OnClickListener {
 
 
     private ViewPager vp_study_content;
@@ -62,6 +62,15 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
         initData();
         initEvent();
     }
+    /**
+     * 初始化组件
+     */
+    @Override
+    protected void initView() {
+        vp_study_content = (ViewPager) findViewById(R.id.vp_study_content);
+        bt_study_footer_save = (Button) findViewById(R.id.bt_study_footer_save);
+    }
+
 
     /**
      * 菜单的操作
@@ -104,18 +113,8 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * 初始化组件
-     */
-    private void initView() {
-        vp_study_content = (ViewPager) findViewById(R.id.vp_study_content);
-        bt_study_footer_save = (Button) findViewById(R.id.bt_study_footer_save);
-    }
-
-    /**
-     * 初始化数据
-     */
-    private void initData() {
+    @Override
+    protected void initData() {
         list = new ArrayList<>();
         testJavaList = BookDao.getAllData();
         //从数据库得到题库,然后+1,是为了展示答题情况
@@ -178,6 +177,12 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
+
+    @Override
+    protected void setListener() {
+
+    }
+
     /**
      * 返回计时时间
      *
@@ -221,7 +226,6 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
      */
     @Override
     public void onClick(View v) {
-        int currentItem = vp_study_content.getCurrentItem();
         switch (v.getId()) {
             case R.id.bt_study_footer_save://保存数据的方法
                 saveInfo("10", "30");

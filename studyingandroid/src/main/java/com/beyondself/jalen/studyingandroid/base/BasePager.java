@@ -2,6 +2,8 @@ package com.beyondself.jalen.studyingandroid.base;
 
 import android.app.Activity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,13 +20,10 @@ public class BasePager {
     public TextView tv_toppager_time;
     public LinearLayout ll_answer_study;
     public RelativeLayout rl_study_show;
-    public TextView tv_top_question;
-    public TextView tv_code_question;
-    public TextView tv_bottom_question;
-    public TextView tv_java_selectA;
-    public TextView tv_java_selectB;
-    public TextView tv_java_selectC;
-    public TextView tv_java_selectD;
+    public TextView tv_top_title;
+    public EditText et_study_content;
+    public Button bt_study_putanswer;
+    public TextView tv_look_other;
 
     public BasePager(Activity mActivity) {
         this.mActivity = mActivity;
@@ -35,13 +34,10 @@ public class BasePager {
         View view = View.inflate(mActivity, R.layout.study_item, null);
         tv_toppager_number = (TextView) view.findViewById(R.id.tv_toppager_number);//记录是哪一页
         tv_toppager_time = (TextView) view.findViewById(R.id.tv_toppager_time);//记录用时时间
-        tv_top_question = (TextView) view.findViewById(R.id.tv_top_question);//问题描述-上
-        tv_code_question = (TextView) view.findViewById(R.id.tv_code_question);//问题描述-代码
-        tv_bottom_question = (TextView) view.findViewById(R.id.tv_bottom_question);//问题描述-下
-        tv_java_selectA = (TextView) view.findViewById(R.id.tv_java_SelectA);//选项A
-        tv_java_selectB = (TextView) view.findViewById(R.id.tv_java_SelectB);//选线B
-        tv_java_selectC = (TextView) view.findViewById(R.id.tv_java_SelectC);//选项C
-        tv_java_selectD = (TextView) view.findViewById(R.id.tv_java_SelectD);//选项D
+        tv_top_title = (TextView) view.findViewById(R.id.tv_top_title);//问题描述-上
+        et_study_content = (EditText) view.findViewById(R.id.et_study_content);//问题回答内容
+        bt_study_putanswer = (Button) view.findViewById(R.id.bt_study_putanswer);//提交按钮
+        tv_look_other = (TextView) view.findViewById(R.id.tv_look_other);//查看其它人回答
         ll_answer_study = (LinearLayout) view.findViewById(R.id.ll_answer_study);//回答模块的形式
         rl_study_show = (RelativeLayout) view.findViewById(R.id.rl_study_show);//展示答题状态
         return view;

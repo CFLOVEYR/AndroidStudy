@@ -1,5 +1,6 @@
 package com.beyondself.jalen.studyingandroid.dao;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -7,12 +8,47 @@ import com.beyondself.jalen.studyingandroid.domain.TestJava;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 读取数据库的方法
  */
 public class BookDao {
     public static final String PATH1 = "data/data/com.beyondself.jalen.studyingandroid/files/book.db";
+
+    /**
+     * 添加题目的方法
+     *
+     * @return
+     */
+    public static boolean insert(Map<String, String> map) {
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH1, null,
+                SQLiteDatabase.OPEN_READONLY);
+        ContentValues values = new ContentValues();
+        //添加数据
+        values.put("", "");
+
+
+        long result = db.insert("book", null, values);
+        return !(result == -1);
+    }
+
+    /**
+     * 添加题目的方法
+     *
+     * @return
+     */
+    public static boolean update(Map<String, String> map) {
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH1, null,
+                SQLiteDatabase.OPEN_READONLY);
+        ContentValues values = new ContentValues();
+        //添加数据
+        values.put("", "");
+
+
+        long result = db.insert("book", null, values);
+        return !(result == -1);
+    }
 
     /**
      * 查询JAVA基础题目的方法
@@ -70,6 +106,4 @@ public class BookDao {
         db.close();
         return list;
     }
-
-
 }

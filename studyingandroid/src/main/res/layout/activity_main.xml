@@ -6,7 +6,7 @@
     android:background="@mipmap/login_bg"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context="com.beyondself.jalen.studyingandroid.activity.MainActivity">
+    tools:context=".activity.main.MainActivity">
 
     <Button
         android:layout_marginTop="30dp"

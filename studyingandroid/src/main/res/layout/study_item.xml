@@ -59,79 +59,43 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_top_question"
+                        android:id="@+id/tv_top_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="题目描述"
                         android:textColor="@color/red"
-                        android:textSize="20sp" />
+                        android:textSize="25sp" />
 
-                    <TextView
-                        android:id="@+id/tv_code_question"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="代码块"
-                        android:textColor="@color/red"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/tv_bottom_question"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="题目描述"
-                        android:textColor="@color/red"
-                        android:textSize="20sp" />
                 </LinearLayout>
-                <!--选项-->
-                <LinearLayout
+
+                <EditText
+                    android:layout_marginTop="8dp"
+                    android:id="@+id/et_study_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:lines="5"
+                    android:gravity="top"
+                    android:textColor="@color/black"
+                    android:hint="这里输入内容"
+                    android:textSize="25sp"/>
+                <Button
+                    android:id="@+id/bt_study_putanswer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="提交高见"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/tv_look_other"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="查看其他人回答"
+                    android:padding="5dp"
                     android:layout_marginTop="10dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_java_SelectA"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="A    我爱我老婆一生一世!!!"
-                        android:textColor="@color/red"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/tv_java_SelectB"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:text="B    我爱我老婆一生一世!!!"
-                        android:textColor="@color/red"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/tv_java_SelectC"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:text="C    我爱我老婆一生一世!!!"
-                        android:textColor="@color/red"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/tv_java_SelectD"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:text="D    我爱我老婆一生一世!!!"
-                        android:textColor="@color/red"
-                        android:textSize="20sp" />
-                </LinearLayout>
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:textColor="@color/blue"/>
 
             </LinearLayout>
         </ScrollView>

@@ -35,8 +35,6 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
 
 
     private ViewPager vp_study_content;
-    private Button bt_study_footer_previous;
-    private Button bt_study_footer_next;
     private Button bt_study_footer_save;
     private List<BasePager> list;
     private MyAdapter adapter;
@@ -111,8 +109,6 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
      */
     private void initView() {
         vp_study_content = (ViewPager) findViewById(R.id.vp_study_content);
-        bt_study_footer_previous = (Button) findViewById(R.id.bt_study_footer_previous);
-        bt_study_footer_next = (Button) findViewById(R.id.bt_study_footer_next);
         bt_study_footer_save = (Button) findViewById(R.id.bt_study_footer_save);
     }
 
@@ -130,13 +126,7 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
             startTime = System.currentTimeMillis();
             BasePager pager = new BasePager(this);
             if (i < testJavaList.size()) {
-                pager.tv_top_question.setText(testJavaList.get(i).getTop_question());
-                pager.tv_code_question.setText(testJavaList.get(i).getCode_question());
-                pager.tv_bottom_question.setText(testJavaList.get(i).getBottom_question());
-                pager.tv_java_selectA.setText(testJavaList.get(i).getSelectA());
-                pager.tv_java_selectB.setText(testJavaList.get(i).getSelectB());
-                pager.tv_java_selectC.setText(testJavaList.get(i).getSelectC());
-                pager.tv_java_selectD.setText(testJavaList.get(i).getSelectD());
+                pager.tv_top_title.setText(testJavaList.get(i).getTop_question());
             } else {
                 pager.ll_answer_study.setVisibility(View.GONE);
                 pager.rl_study_show.setVisibility(View.VISIBLE);
@@ -171,20 +161,12 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
                     flag = true;
                 }
                 getCurrentTime(position);
-                if (position == list.size()-1) {
-                    bt_study_footer_next.setVisibility(View.GONE);
-                    bt_study_footer_previous.setVisibility(View.GONE);
+                if (position == list.size() - 1) {
                     bt_study_footer_save.setVisibility(View.VISIBLE);
                     bt_study_footer_save.setText("继续挑战,并存档!!");
                     list.get(position).ll_answer_study.setVisibility(View.GONE);
                     list.get(position).rl_study_show.setVisibility(View.VISIBLE);
-                } else if (position == 0) {
-                    bt_study_footer_next.setVisibility(View.VISIBLE);
-                    bt_study_footer_previous.setVisibility(View.GONE);
-                    bt_study_footer_save.setVisibility(View.GONE);
                 } else {
-                    bt_study_footer_next.setVisibility(View.VISIBLE);
-                    bt_study_footer_previous.setVisibility(View.VISIBLE);
                     bt_study_footer_save.setVisibility(View.GONE);
                 }
             }
@@ -229,8 +211,6 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
      * 初始化点击事件
      */
     private void initEvent() {
-        bt_study_footer_previous.setOnClickListener(this);
-        bt_study_footer_next.setOnClickListener(this);
         bt_study_footer_save.setOnClickListener(this);
     }
 
@@ -243,16 +223,6 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         int currentItem = vp_study_content.getCurrentItem();
         switch (v.getId()) {
-            case R.id.bt_study_footer_previous://上一题
-                if (currentItem != 0) {
-                    vp_study_content.setCurrentItem(--currentItem, false);//去掉动画
-                }
-                break;
-            case R.id.bt_study_footer_next://下一题
-                if (currentItem != list.size() - 1) {
-                    vp_study_content.setCurrentItem(++currentItem, false);//去掉动画
-                }
-                break;
             case R.id.bt_study_footer_save://保存数据的方法
                 saveInfo("10", "30");
                 break;
@@ -270,7 +240,7 @@ public class StudyActivity extends AppCompatActivity implements View.OnClickList
 
         @Override
         public int getCount() {
-            return list.size() ;
+            return list.size();
         }
 
         @Override

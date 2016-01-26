@@ -24,15 +24,18 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
-    compile files('libs/Bmob_Push_V0.6beta_20150408.jar')
     compile files('libs/BmobSDK_V3.4.5_1111.jar')
-    compile files('libs/okhttp-2.4.0.jar')
-    compile files('libs/okio-1.4.0.jar')
-    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
-    compile files('libs/YoumiSdk_v5.3.3_2015-10-10.jar')
     compile files('libs/Msc.jar')
     compile 'de.hdodenhof:circleimageview:2.0.0'
     //圆角图片的依赖
     compile project(':PullToRefreshLibrary')
-    compile files('libs/cocos2d-android.jar')
+    compile files('libs/MobCommons.jar')
+    compile files('libs/MobTools.jar')
+    compile files('libs/ShareSDK-Core-2.6.5.jar')
+    compile files('libs/ShareSDK-QQ-2.6.5.jar')
+    compile files('libs/ShareSDK-QZone-2.6.5.jar')
+    compile files('libs/ShareSDK-SinaWeibo-2.6.5.jar')
+    compile files('libs/ShareSDK-Wechat-2.6.5.jar')
+    compile files('libs/ShareSDK-Wechat-Core-2.6.5.jar')
+    compile files('libs/ShareSDK-Wechat-Moments-2.6.5.jar')
 }

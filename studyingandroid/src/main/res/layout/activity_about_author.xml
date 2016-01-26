@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/register_bg"
     android:orientation="vertical"
-    tools:context="com.beyondself.jalen.studyingandroid.activity.AboutAuthorActivity">
+    tools:context=".activity.main.AboutAuthorActivity">
 
     <TextView
         android:layout_width="match_parent"

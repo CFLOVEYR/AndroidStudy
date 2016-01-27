@@ -4,10 +4,8 @@ import android.app.Application;
 import android.test.ApplicationTestCase;
 import android.util.Log;
 
-import com.beyondself.jalen.studyingandroid.dao.BookDao;
-import com.beyondself.jalen.studyingandroid.domain.InterView;
-import com.beyondself.jalen.studyingandroid.domain.TestJava;
-import com.beyondself.jalen.studyingandroid.utils.LogUtils;
+import com.beyondself.jalen.studyingandroid.dao.CommandDao;
+import com.beyondself.jalen.studyingandroid.domain.Command;
 
 import java.util.List;
 
@@ -18,14 +16,19 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
     public ApplicationTest() {
         super(Application.class);
     }
-    public void testDbDAO(){
-        List<TestJava> list = BookDao.getAllData();
-        LogUtils.i("Test", list.size() + "");
+
+    public void testInsert() {
+        for (int i = 0; i < 10; i++) {
+            CommandDao.insertCommandToCommand(6, "fdsagl", 1, "jalen");
+        }
+
     }
 
-    public void testDbDAO1(){
-        List<InterView> list = BookDao.getInterViewData();
-//        LogUtils.e("Test", list.toString()+"");
-        Log.e("Test",list.toString());
+    public void testDbDAO() {
+        List<Command> commands = CommandDao.queryCommands(6);
+        for (Command command : commands) {
+            Log.e("----------", "------------" + command.toString());
+        }
+
     }
 }

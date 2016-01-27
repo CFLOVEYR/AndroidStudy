@@ -4,42 +4,40 @@ import java.io.Serializable;
 
 /**
  * =========================================================
- * <p/>
+ * <p>
  * 版权: 个人开发Mr.Jalen  版权所有(c) 2016
- * <p/>
+ * <p>
  * 作者:Jalen
- * <p/>
+ * <p>
  * 版本: 1.0
- * <p/>
- * <p/>
+ * <p>
+ * <p>
  * 创建日期 : 2016/1/26  16:27
- * <p/>
- * <p/>
+ * <p>
+ * <p>
  * 邮箱：Studylifetime@sina.com
- * <p/>
+ * <p>
  * 描述:
- * <p/>
- * <p/>
+ * <p>
+ * <p>
  * 修订历史:
- * <p/>
+ * <p>
  * =========================================================
  */
-public class InterView implements Serializable{
+public class InterView implements Serializable {
     int _id;
     String question;
     boolean Collected;//是否被收藏
     String Answer;
     String Remark;
+    String Command;
 
-    @Override
-    public String toString() {
-        return "InterView{" +
-                "_id=" + _id +
-                ", question='" + question + '\'' +
-                ", Collected=" + Collected +
-                ", Answer='" + Answer + '\'' +
-                ", Remark='" + Remark + '\'' +
-                '}';
+    public String getCommand() {
+        return Command;
+    }
+
+    public void setCommand(String command) {
+        Command = command;
     }
 
     public String getRemark() {

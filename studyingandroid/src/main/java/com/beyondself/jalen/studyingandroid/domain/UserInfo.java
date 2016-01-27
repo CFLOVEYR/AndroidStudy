@@ -9,6 +9,15 @@ public class UserInfo extends BmobUser {
     String sex;
     String decription;
     Integer age;
+    int Pic;
+
+    public int getPic() {
+        return Pic;
+    }
+
+    public void setPic(int pic) {
+        Pic = pic;
+    }
 
     public String getSex() {
         return sex;

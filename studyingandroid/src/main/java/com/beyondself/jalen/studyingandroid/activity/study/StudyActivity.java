@@ -18,9 +18,9 @@ import android.widget.Toast;
 import com.beyondself.jalen.studyingandroid.R;
 import com.beyondself.jalen.studyingandroid.activity.main.BaseActivity;
 import com.beyondself.jalen.studyingandroid.base.BasePager;
-import com.beyondself.jalen.studyingandroid.dao.BookDao;
+import com.beyondself.jalen.studyingandroid.dao.JavaDao;
+import com.beyondself.jalen.studyingandroid.domain.InterView;
 import com.beyondself.jalen.studyingandroid.domain.Studyer;
-import com.beyondself.jalen.studyingandroid.domain.TestJava;
 import com.beyondself.jalen.studyingandroid.utils.ToastUtils;
 
 import java.text.SimpleDateFormat;
@@ -38,7 +38,7 @@ public class StudyActivity extends BaseActivity implements View.OnClickListener 
     private Button bt_study_footer_save;
     private List<BasePager> list;
     private MyAdapter adapter;
-    private List<TestJava> testJavaList;
+    private List<InterView> testJavaList;
     private boolean flag;
     private Handler handler = new Handler() {
         @Override
@@ -116,7 +116,7 @@ public class StudyActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void initData() {
         list = new ArrayList<>();
-        testJavaList = BookDao.getAllData();
+        testJavaList = JavaDao.getInterViewData();
         //从数据库得到题库,然后+1,是为了展示答题情况
         for (int i = 0; i < testJavaList.size() + 1; i++) {
             /**
@@ -125,7 +125,7 @@ public class StudyActivity extends BaseActivity implements View.OnClickListener 
             startTime = System.currentTimeMillis();
             BasePager pager = new BasePager(this);
             if (i < testJavaList.size()) {
-                pager.tv_top_title.setText(testJavaList.get(i).getTop_question());
+                pager.tv_top_title.setText(testJavaList.get(i).getQuestion());
             } else {
                 pager.ll_answer_study.setVisibility(View.GONE);
                 pager.rl_study_show.setVisibility(View.VISIBLE);

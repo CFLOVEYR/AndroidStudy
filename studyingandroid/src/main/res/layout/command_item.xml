@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_commannd_pic"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/icon" />
+
+        <TextView
+            android:id="@+id/tv_comman_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="王尼玛"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_command_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:ellipsize="end"
+            android:lines="2"
+            android:text="我真心任务我是对的你你是错的,你不能不承认这个错误"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_nozan"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:drawableLeft="@mipmap/star_off"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:text="30"
+            android:textColor="@color/red" />
+
+        <TextView
+            android:id="@+id/tv_zan"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/tv_nozan"
+            android:drawableLeft="@mipmap/star_off"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:text="30"
+            android:textColor="@color/red" />
+    </RelativeLayout>
+</LinearLayout>

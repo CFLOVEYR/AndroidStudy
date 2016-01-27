@@ -134,7 +134,8 @@
             android:parentActivityName=".activity.main.SettingActivity" />
         <activity android:name=".activity.study.InterViewActivity" />
         <activity android:name=".activity.main.BaseActivity" />
-        <activity android:name=".activity.study.InterViewShowActivity"></activity>
+        <activity android:name=".activity.study.InterViewShowActivity" />
+        <activity android:name=".activity.study.CommandShowActivity"></activity>
     </application>
 
 </manifest>

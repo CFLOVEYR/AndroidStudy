@@ -6,9 +6,4 @@
         android:icon="@mipmap/add"
         android:title="@string/action_insert"
         study:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_setting"
-        android:icon="@mipmap/setting"
-        android:title="@string/action_setting"
-        study:showAsAction="ifRoom" />
 </menu>

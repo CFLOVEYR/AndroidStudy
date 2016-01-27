@@ -132,11 +132,26 @@
         <activity
             android:name=".activity.main.AboutAuthorActivity"
             android:parentActivityName=".activity.main.SettingActivity" />
-        <activity android:name=".activity.study.InterViewActivity" />
+        <!--面试题库页面-->
+        <activity
+            android:name=".activity.study.InterViewActivity"
+            android:parentActivityName=".activity.main.MainActivity" />
+        <!--基类页面-->
         <activity android:name=".activity.main.BaseActivity" />
-        <activity android:name=".activity.study.InterViewShowActivity" />
+        <!--面试题详细展示页面-->
+        <activity
+            android:name=".activity.study.InterViewShowActivity"
+            android:parentActivityName=".activity.study.InterViewActivity" />
+        <!--评论展示页面-->
         <activity android:name=".activity.study.CommandShowActivity" />
-        <activity android:name=".activity.study.CollectionActivity"></activity>
+        <!--面试题收藏页面-->
+        <activity
+            android:name=".activity.study.CollectionActivity"
+            android:parentActivityName=".activity.main.MainActivity" />
+        <!--面试题添加页面-->
+        <activity
+            android:name=".activity.study.AddInterViewActivity"
+            android:parentActivityName=".activity.study.InterViewActivity"></activity>
     </application>
 
 </manifest>

@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.beyondself.jalen.studyingandroid.R;
 import com.beyondself.jalen.studyingandroid.activity.main.BaseActivity;
 import com.beyondself.jalen.studyingandroid.base.BasePager;
-import com.beyondself.jalen.studyingandroid.dao.JavaDao;
+import com.beyondself.jalen.studyingandroid.dao.InterViewDao;
 import com.beyondself.jalen.studyingandroid.domain.InterView;
 import com.beyondself.jalen.studyingandroid.domain.Studyer;
 import com.beyondself.jalen.studyingandroid.utils.ToastUtils;
@@ -78,7 +78,7 @@ public class StudyActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
+        inflater.inflate(R.menu.share, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -116,7 +116,7 @@ public class StudyActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void initData() {
         list = new ArrayList<>();
-        testJavaList = JavaDao.getInterViewData();
+        testJavaList = InterViewDao.getInterViewData();
         //从数据库得到题库,然后+1,是为了展示答题情况
         for (int i = 0; i < testJavaList.size() + 1; i++) {
             /**

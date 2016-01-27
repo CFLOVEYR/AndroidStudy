@@ -1,6 +1,5 @@
 package com.beyondself.jalen.studyingandroid.dao;
 
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.SystemClock;
@@ -9,7 +8,6 @@ import com.beyondself.jalen.studyingandroid.domain.InterView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 读取数据库的方法
@@ -18,40 +16,7 @@ public class BookDao {
     public static final String PATH1 = "data/data/com.beyondself.jalen.studyingandroid/files/book.db";
 
 
-    /**
-     * 添加题目的方法
-     *
-     * @return
-     */
-    public static boolean insert(Map<String, String> map) {
-        SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH1, null,
-                SQLiteDatabase.OPEN_READONLY);
-        ContentValues values = new ContentValues();
-        //添加数据
-        values.put("", "");
 
-        long result = db.insert("book", null, values);
-        db.close();
-        return !(result == -1);
-    }
-
-    /**
-     * 更新题目的方法
-     *
-     * @return
-     */
-    public static boolean update(Map<String, String> map) {
-        SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH1, null,
-                SQLiteDatabase.OPEN_READONLY);
-        ContentValues values = new ContentValues();
-        //添加数据
-        values.put("", "");
-
-
-        long result = db.update("Interview", values, null, new String[]{""});
-        db.close();
-        return !(result == -1);
-    }
     /**
      * 通过_id查询得到InterView
      *

@@ -3,6 +3,9 @@ package com.beyondself.jalen.studyingandroid.activity.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -65,6 +68,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bt_login.setOnClickListener(this);
     }
 
+    /**
+     * 菜单的操作
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    /**
+     * 菜单栏的点击事件
+     *
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_setting:
+                startActivity(new Intent(this, SettingActivity.class));
+
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

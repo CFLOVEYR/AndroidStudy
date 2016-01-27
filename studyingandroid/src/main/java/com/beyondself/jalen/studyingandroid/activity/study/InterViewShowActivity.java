@@ -78,34 +78,6 @@ public class InterViewShowActivity extends BaseActivity implements View.OnClickL
         bt_remark_write.setOnClickListener(this);
     }
 
-    /**
-     * 菜单的操作
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.interview_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    /**
-     * 菜单栏的点击事件
-     *
-     * @param item
-     * @return
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_setting:
-                startActivity(new Intent(this, SettingActivity.class));
-            case R.id.action_add:
-                startActivity(new Intent(this, SettingActivity.class));
-            default:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void onClick(View v) {

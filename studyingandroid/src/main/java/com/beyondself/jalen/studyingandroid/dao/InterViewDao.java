@@ -1,5 +1,6 @@
 package com.beyondself.jalen.studyingandroid.dao;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -11,13 +12,41 @@ import java.util.List;
 /**
  * 读取数据库的方法
  */
-public class JavaDao {
+public class InterViewDao {
     public static final String PATH1 = "data/data/com.beyondself.jalen.studyingandroid/files/book.db";
 
 
+    /**
+     *   添加面试题的方法
+     * @param qustion
+     * @param answer
+     * @return
+     */
+    public static  boolean insert(String qustion, String answer) {
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH1, null,
+                SQLiteDatabase.OPEN_READWRITE);
+        ContentValues values = new ContentValues();
+        values.put("Question", qustion);
+        values.put("Answer", answer);
+        long result = db.insert("InterView", null, values);
+        return !(result == -1);
+    }
 
     /**
-     * 查询JAVA基础题目的方法
+     *  删除某道面试题的方法
+     * @param _id
+     * @return
+     */
+    public static  boolean delete(int _id) {
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH1, null,
+                SQLiteDatabase.OPEN_READWRITE);
+
+        int result = db.delete("InterView", "_id = ?", new String[]{_id + ""});
+        return !(result == 0);
+    }
+
+    /**
+     * 查询面试题的的方法
      *
      * @return
      */

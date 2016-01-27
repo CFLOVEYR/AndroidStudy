@@ -4,8 +4,8 @@ import android.app.Application;
 import android.test.ApplicationTestCase;
 import android.util.Log;
 
-import com.beyondself.jalen.studyingandroid.dao.CommandDao;
-import com.beyondself.jalen.studyingandroid.domain.Command;
+import com.beyondself.jalen.studyingandroid.dao.CollectionDao;
+import com.beyondself.jalen.studyingandroid.domain.Collection;
 
 import java.util.List;
 
@@ -19,16 +19,28 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
 
     public void testInsert() {
         for (int i = 0; i < 10; i++) {
-            CommandDao.insertCommandToCommand(6, "fdsagl", 1, "jalen");
+            CollectionDao.insertCollection(i+1,"423423","dfnaf","fdsaga","tom");
         }
 
     }
 
     public void testDbDAO() {
-        List<Command> commands = CommandDao.queryCommands(6);
-        for (Command command : commands) {
+        List<Collection> collections = CollectionDao.queryCommands("tom");
+        for (Collection command : collections) {
             Log.e("----------", "------------" + command.toString());
         }
+    }
+    public  void testDelete(){
+        CollectionDao.deleteItem(5);
+    }
+    public void testExsit(){
+        boolean exsit = CollectionDao.queryExsit(5);
+        if (exsit) {
+            Log.e("----------", "------------存在");
+        }else {
+            Log.e("----------", "------------不存在");
+        }
+
 
     }
 }

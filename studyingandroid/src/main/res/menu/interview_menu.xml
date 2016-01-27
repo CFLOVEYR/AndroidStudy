@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:study="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_add"
+        android:icon="@mipmap/add"
+        android:title="@string/action_insert"
+        study:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_setting"
+        android:icon="@mipmap/setting"
+        android:title="@string/action_setting"
+        study:showAsAction="ifRoom" />
+</menu>

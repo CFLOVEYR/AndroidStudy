@@ -52,7 +52,32 @@ public class BookDao {
         db.close();
         return !(result == -1);
     }
-
+    /**
+     * 通过_id查询得到InterView
+     *
+     * @return
+     */
+    public static InterView queryInterViewById(int _id) {
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH1, null,
+                SQLiteDatabase.OPEN_READONLY);
+        Cursor cursor = db.rawQuery("select * from Interview where _id = ?", new String[]{"" + _id});
+        if (cursor.moveToNext()) {
+            InterView test = new InterView();
+            int id = cursor.getInt(cursor.getColumnIndex("_id"));
+            String question = cursor.getString(cursor.getColumnIndex("Question"));
+            int Collected = cursor.getInt(cursor.getColumnIndex("Collected_"));
+            String Answer = cursor.getString(cursor.getColumnIndex("Answer"));
+//            String remark = cursor.getString(cursor.getColumnIndex("Remark"));
+            test.set_id(id);
+            test.setQuestion(question);
+            test.setCollected(Collected == 1);
+            test.setAnswer(Answer);
+            return  test;
+        }
+        cursor.close();
+        db.close();
+        return  null;
+    }
 
     /**
      * 查询一共有多少条数据的方法

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.beyondself.jalen.studyingandroid.R;
 import com.beyondself.jalen.studyingandroid.activity.login.LoginActivity;
+import com.beyondself.jalen.studyingandroid.activity.study.CollectionActivity;
 import com.beyondself.jalen.studyingandroid.activity.study.InterViewActivity;
 import com.beyondself.jalen.studyingandroid.activity.study.StudyActivity;
 import com.beyondself.jalen.studyingandroid.utils.ToastUtils;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, RankActivity.class));
                 break;
             case R.id.bt_setting:
-                startActivity(new Intent(MainActivity.this, SettingActivity.class));
+                startActivity(new Intent(MainActivity.this, CollectionActivity.class));
                 break;
             case R.id.bt_login:
                 BmobUser bmobUser = BmobUser.getCurrentUser(this);

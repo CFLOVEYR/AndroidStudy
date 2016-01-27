@@ -4,7 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.beyondself.jalen.studyingandroid.domain.Command;
+import com.beyondself.jalen.studyingandroid.domain.Collection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,40 +19,72 @@ public class CollectionDao {
     /**
      * Interview表中添加对题目的评论
      */
-    public static boolean insertCollection(int _id, String qustion, String answer, String remark) {
+    public static boolean insertCollection(int _id, String qustion, String answer, String remark, String name) {
         SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH1, null,
-                SQLiteDatabase.ENABLE_WRITE_AHEAD_LOGGING);
+                SQLiteDatabase.OPEN_READWRITE);
         ContentValues values = new ContentValues();
         //添加数据
         values.put("_id", _id);
         values.put("Question", qustion);
         values.put("Answer", answer);
         values.put("Remark", remark);
+        values.put("UserName", name);
         long result = db.insert("Collection", null, values);
         db.close();
         return !(result == -1);
     }
 
     /**
-     * 查询收藏的题目
+     * 查询是否收藏
      */
-    public static List<Command> queryCommands(int _id) {
-        List<Command> list = new ArrayList<Command>();
+    public static boolean queryExsit(int _id) {
         SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH1, null,
                 SQLiteDatabase.OPEN_READONLY);
-        Cursor cursor = db.rawQuery("select * from Interview where _id = ?", new String[]{_id + ""});
+        Cursor cursor = db.rawQuery("select * from Collection where _id = ?", new String[]{_id + ""});
+        if (cursor.moveToNext()) {
+            return true;
+        }
+        cursor.close();
+        db.close();
+        return false;
+    }
+
+    /**
+     * 取消收藏
+     */
+    public static boolean deleteItem(int _id) {
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH1, null,
+                SQLiteDatabase.OPEN_READWRITE);
+//        db.execSQL("delete * from Collection where _id = ?", new String[]{_id + ""});
+        int result = db.delete("Collection", "_id = ?", new String[]{_id + ""});
+        db.close();
+        if (result == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 查询收藏的题目
+     */
+    public static List<Collection> queryCommands(String name) {
+        List<Collection> list = new ArrayList<>();
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH1, null,
+                SQLiteDatabase.OPEN_READONLY);
+        Cursor cursor = db.rawQuery("select * from Collection where UserName = ?", new String[]{name});
         while (cursor.moveToNext()) {
-            Command test = new Command();
-            String name = cursor.getString(cursor.getColumnIndex("UserName"));
-            String command = cursor.getString(cursor.getColumnIndex("Command"));
-            int zan = cursor.getInt(cursor.getColumnIndex("Zan"));
-            int nozan = cursor.getInt(cursor.getColumnIndex("NoZan"));
-//            int pic = cursor.getInt(cursor.getColumnIndex("Pic"));
-            test.set_id(_id);
-            test.setUserName(name);
-            test.setCommand(command);
-            test.setZan(zan);
-            test.setNoZan(nozan);
+
+            Collection test = new Collection();
+            int id = cursor.getInt(cursor.getColumnIndex("_id"));
+            String question = cursor.getString(cursor.getColumnIndex("Question"));
+            String answer = cursor.getString(cursor.getColumnIndex("Answer"));
+            String remark = cursor.getString(cursor.getColumnIndex("Remark"));
+            String userName = cursor.getString(cursor.getColumnIndex("UserName"));
+            test.set_id(id);
+            test.setQuestion(question);
+            test.setAnswer(answer);
+            test.setRemark(remark);
+            test.setUserName(userName);
             list.add(test);
         }
         //关闭游标和关闭数据库

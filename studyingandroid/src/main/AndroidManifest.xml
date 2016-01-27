@@ -135,7 +135,8 @@
         <activity android:name=".activity.study.InterViewActivity" />
         <activity android:name=".activity.main.BaseActivity" />
         <activity android:name=".activity.study.InterViewShowActivity" />
-        <activity android:name=".activity.study.CommandShowActivity"></activity>
+        <activity android:name=".activity.study.CommandShowActivity" />
+        <activity android:name=".activity.study.CollectionActivity"></activity>
     </application>
 
 </manifest>

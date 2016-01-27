@@ -55,6 +55,7 @@ public class InterViewActivity extends BaseActivity implements BGARefreshLayout.
 
     @Override
     protected void initView() {
+        setTitle("面试题题库");
         lv_knowledge_show = (ListView) findViewById(R.id.lv_knowledge_show);
         lv_knowledge_show.setOnItemClickListener(this);
         mRefreshLayout = (BGARefreshLayout) findViewById(R.id.rl_modulename_refresh);

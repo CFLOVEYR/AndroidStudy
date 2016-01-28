@@ -2,35 +2,63 @@ package com.beyondself.jalen.studyingandroid.domain;
 
 import java.io.Serializable;
 
+import cn.bmob.v3.BmobObject;
+
 /**
  * =========================================================
- * <p>
+ * <p/>
  * 版权: 个人开发Mr.Jalen  版权所有(c) 2016
- * <p>
+ * <p/>
  * 作者:Jalen
- * <p>
+ * <p/>
  * 版本: 1.0
- * <p>
- * <p>
+ * <p/>
+ * <p/>
  * 创建日期 : 2016/1/26  16:27
- * <p>
- * <p>
+ * <p/>
+ * <p/>
  * 邮箱：Studylifetime@sina.com
- * <p>
+ * <p/>
  * 描述:
- * <p>
- * <p>
+ * <p/>
+ * <p/>
  * 修订历史:
- * <p>
+ * <p/>
  * =========================================================
  */
-public class InterView implements Serializable {
-    int _id;
+public class InterView extends BmobObject implements Serializable, Comparable {
+    Integer id;
     String question;
-    boolean Collected;//是否被收藏
+    Boolean Collected;//是否被收藏
     String Answer;
     String Remark;
     String Command;
+    Integer updateCode;
+    Boolean updated;
+
+    public Boolean getCollected() {
+        return Collected;
+    }
+
+    public void setCollected(Boolean collected) {
+        Collected = collected;
+    }
+
+    public Integer getUpdateCode() {
+        return updateCode;
+    }
+
+    public void setUpdateCode(Integer updateCode) {
+        this.updateCode = updateCode;
+    }
+
+    public Boolean getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Boolean updated) {
+        this.updated = updated;
+    }
 
     public String getCommand() {
         return Command;
@@ -48,12 +76,12 @@ public class InterView implements Serializable {
         Remark = remark;
     }
 
-    public int get_id() {
-        return _id;
+    public Integer getId() {
+        return id;
     }
 
-    public void set_id(int _id) {
-        this._id = _id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getQuestion() {
@@ -78,5 +106,26 @@ public class InterView implements Serializable {
 
     public void setAnswer(String answer) {
         Answer = answer;
+    }
+
+    @Override
+    public String toString() {
+        return "InterView{" +
+                "id=" + id +
+                ", question='" + question + '\'' +
+                ", Collected=" + Collected +
+                ", Answer='" + Answer + '\'' +
+                ", Remark='" + Remark + '\'' +
+                ", Command='" + Command + '\'' +
+                ", updateCode=" + updateCode +
+                ", updated=" + updated +
+                '}';
+    }
+
+    @Override
+    public int compareTo(Object another) {
+        InterView other = (InterView) another;
+        if (other.getId() != this.getId()) return this.getId() - other.getId();
+        return 0;
     }
 }

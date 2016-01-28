@@ -3,9 +3,6 @@ package com.beyondself.jalen.studyingandroid.activity.study;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.beyondself.jalen.studyingandroid.R;
+import com.beyondself.jalen.studyingandroid.activity.login.LoginActivity;
 import com.beyondself.jalen.studyingandroid.activity.main.BaseActivity;
-import com.beyondself.jalen.studyingandroid.activity.main.SettingActivity;
 import com.beyondself.jalen.studyingandroid.dao.CollectionDao;
 import com.beyondself.jalen.studyingandroid.dao.CommandDao;
 import com.beyondself.jalen.studyingandroid.domain.InterView;
@@ -62,7 +59,7 @@ public class InterViewShowActivity extends BaseActivity implements View.OnClickL
         mData = (InterView) intent.getSerializableExtra("data");
         tvInterviewShowTitle.setText(mData.getQuestion());
         tvInterviewShowContent.setText(mData.getAnswer());
-        boolean exsit = CollectionDao.queryExsit(mData.get_id());
+        boolean exsit = CollectionDao.queryExsit(mData.getId());
         if (exsit) {
             ivCollected.setImageResource(R.mipmap.star_on);
         } else {
@@ -85,66 +82,26 @@ public class InterViewShowActivity extends BaseActivity implements View.OnClickL
             case R.id.iv_remark_read:
                 showToast("进入评论阅读");
                 Intent intent = new Intent(this, CommandShowActivity.class);
-                intent.putExtra("_id", mData.get_id());
+                intent.putExtra("_id", mData.getId());
                 startActivity(intent);
                 break;
             case R.id.bt_remark_write:
-                final AlertDialog.Builder builder = new AlertDialog.Builder(InterViewShowActivity.this);
-                final AlertDialog dialog = builder.create();
-                View view = View.inflate(InterViewShowActivity.this, R.layout.comment_item, null);
-                dialog.setView(view);
-                Button bt_command = (Button) view.findViewById(R.id.bt_command);
-                final EditText et_command = (EditText) view.findViewById(R.id.et_command);
-                dialog.show();
-                bt_command.setOnClickListener(new View.OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View v) {
-                        //判断非空
-                        String command = et_command.getText().toString();
-                        if (!StringUtils.isEmpty(command)) {
-                            //提交到服务器,并改变本地数据库,并且重新查询
-                            int id = mData.get_id();
-                            //添加自己的评论
-                            boolean result = CommandDao.updateCommandToInterView(id, command);
-//                            int pic = user.getPic();
-                            String username = mCurrentUser.getUsername();
-                            boolean result1 = CommandDao.insertCommandToCommand(id, command, 1, username);
-                            if (result1) {
-                                showToast("增加评论成功");
-                            }
-
-                            dialog.dismiss();
-                        } else {
-                            showToast("输入内容不为空");
-                        }
-                    }
-                });
+                if (mCurrentUser != null) {
+                    //评论的的对话框展示
+                    showDialogWrite();
+                }else {
+                    showToast("请先登录");
+                    startActivity(new Intent(InterViewShowActivity.this, LoginActivity.class));
+                }
 
                 break;
             case R.id.iv_collected:
-                int id = mData.get_id();
-                boolean exsit = CollectionDao.queryExsit(id);
-                if (!exsit) {
-                    boolean result = CollectionDao.insertCollection(id, mData.getQuestion()
-                            , mData.getAnswer(), mData.getRemark(),
-                            mCurrentUser.getUsername());
-                    if (result) {
-                        showToast("收藏成功");
-                        ivCollected.setImageResource(R.mipmap.star_on);
-                    } else {
-                        showToast("收藏失败");
-                    }
-
-                } else {
-
-                    boolean result = CollectionDao.deleteItem(mData.get_id());
-                    if (result) {
-                        ivCollected.setImageResource(R.mipmap.star_off);
-                        showToast("取消收藏");
-                    }
-
+                if (mCurrentUser != null) {
+                    //添加到收藏的判断
+                    judgeCollected();
+                }else {
+                    showToast("请先登录");
+                    startActivity(new Intent(InterViewShowActivity.this, LoginActivity.class));
                 }
 
                 break;
@@ -153,5 +110,66 @@ public class InterViewShowActivity extends BaseActivity implements View.OnClickL
                 break;
 
         }
+    }
+
+    private void judgeCollected() {
+        int id = mData.getId();
+        boolean exsit = CollectionDao.queryExsit(id);
+        if (!exsit) {
+            boolean result = CollectionDao.insertCollection(id, mData.getQuestion()
+                    , mData.getAnswer(), mData.getRemark(),
+                    mCurrentUser.getUsername());
+            if (result) {
+                showToast("收藏成功");
+                ivCollected.setImageResource(R.mipmap.star_on);
+            } else {
+                showToast("收藏失败");
+            }
+
+        } else {
+
+            boolean result = CollectionDao.deleteItem(mData.getId());
+            if (result) {
+                ivCollected.setImageResource(R.mipmap.star_off);
+                showToast("取消收藏");
+            }
+
+        }
+    }
+
+    private void showDialogWrite() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(InterViewShowActivity.this);
+        final AlertDialog dialog = builder.create();
+        View view = View.inflate(InterViewShowActivity.this, R.layout.comment_item, null);
+        dialog.setView(view);
+        Button bt_command = (Button) view.findViewById(R.id.bt_command);
+        final EditText et_command = (EditText) view.findViewById(R.id.et_command);
+        dialog.show();
+        bt_command.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+                //判断非空
+                String command = et_command.getText().toString();
+                if (!StringUtils.isEmpty(command)) {
+                    //提交到服务器,并改变本地数据库,并且重新查询
+                    int id = mData.getId();
+                    //添加自己的评论
+                    boolean result = CommandDao.updateCommandToInterView(id, command);
+//                            int pic = user.getPic();
+                    String username = mCurrentUser.getUsername();
+                    boolean result1 = CommandDao.insertCommandToCommand(id, command, 1, username);
+                    if (result1) {
+                        showToast("增加评论成功");
+                    }
+
+                    dialog.dismiss();
+                } else {
+                    showToast("输入内容不为空");
+                }
+            }
+        });
+
     }
 }

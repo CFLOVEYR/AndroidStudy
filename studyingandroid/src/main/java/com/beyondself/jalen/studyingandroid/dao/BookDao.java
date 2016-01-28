@@ -16,7 +16,6 @@ public class BookDao {
     public static final String PATH1 = "data/data/com.beyondself.jalen.studyingandroid/files/book.db";
 
 
-
     /**
      * 通过_id查询得到InterView
      *
@@ -33,15 +32,15 @@ public class BookDao {
             int Collected = cursor.getInt(cursor.getColumnIndex("Collected_"));
             String Answer = cursor.getString(cursor.getColumnIndex("Answer"));
 //            String remark = cursor.getString(cursor.getColumnIndex("Remark"));
-            test.set_id(id);
+            test.setId(id);
             test.setQuestion(question);
             test.setCollected(Collected == 1);
             test.setAnswer(Answer);
-            return  test;
+            return test;
         }
         cursor.close();
         db.close();
-        return  null;
+        return null;
     }
 
     /**
@@ -68,9 +67,9 @@ public class BookDao {
      * @return
      */
     public static List<InterView> queryInterViewData(int maxCount, int startIndex) {
-        List<InterView> list = new ArrayList<InterView>();
+        List<InterView> list = new ArrayList<>();
         SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH1, null,
-                SQLiteDatabase.OPEN_READONLY);
+                SQLiteDatabase.OPEN_READWRITE);
         Cursor cursor = db.rawQuery("select * from Interview limit ? offset ?",
                 new String[]{String.valueOf(maxCount), String.valueOf(startIndex)});
         while (cursor.moveToNext()) {
@@ -80,7 +79,7 @@ public class BookDao {
             int Collected = cursor.getInt(cursor.getColumnIndex("Collected_"));
             String Answer = cursor.getString(cursor.getColumnIndex("Answer"));
 //            String remark = cursor.getString(cursor.getColumnIndex("Remark"));
-            test.set_id(id);
+            test.setId(id);
             test.setQuestion(question);
             test.setCollected(Collected == 1);
             test.setAnswer(Answer);
@@ -93,4 +92,24 @@ public class BookDao {
         return list;
     }
 
+    /***
+     * 获得最大的_id
+     *
+     * @return
+     */
+    public static int queryMaxCount() {
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH1, null,
+                SQLiteDatabase.OPEN_READONLY);
+        Cursor cursor = db.rawQuery("select _id from Interview", null);
+        int max = 0;
+        while (cursor.moveToNext()) {
+            int sub = cursor.getInt(cursor.getColumnIndex("_id"));
+            if (max < sub) {
+                max = sub;
+            }
+        }
+        cursor.close();
+        db.close();
+        return max;
+    }
 }

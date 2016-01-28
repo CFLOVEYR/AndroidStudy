@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button bt_answer_pattern;
     private Button bt_story_pattern;
     private Button bt_rank;
-    private Button bt_setting;
+    private Button bt_collection;
     private Button bt_login;
     private RecognizerListener recognizerListener;
 
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bt_answer_pattern = (Button) findViewById(R.id.bt_answer_pattern);
         bt_story_pattern = (Button) findViewById(R.id.bt_story_pattern);
         bt_rank = (Button) findViewById(R.id.bt_rank);
-        bt_setting = (Button) findViewById(R.id.bt_setting);
+        bt_collection = (Button) findViewById(R.id.bt_collection);
         bt_login = (Button) findViewById(R.id.bt_login);
     }
 
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bt_answer_pattern.setOnClickListener(this);
         bt_story_pattern.setOnClickListener(this);
         bt_rank.setOnClickListener(this);
-        bt_setting.setOnClickListener(this);
+        bt_collection.setOnClickListener(this);
         bt_login.setOnClickListener(this);
     }
 
@@ -97,22 +97,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     @Override
     public void onClick(View v) {
+        BmobUser bmobUser = BmobUser.getCurrentUser(this);
         switch (v.getId()) {
             case R.id.bt_answer_pattern:
                 startActivity(new Intent(MainActivity.this, StudyActivity.class));
                 break;
             case R.id.bt_story_pattern:
-//                Toast.makeText(MainActivity.this, "努力开发中,敬请期待...", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity.this, InterViewActivity.class));
                 break;
             case R.id.bt_rank:
-                startActivity(new Intent(MainActivity.this, RankActivity.class));
+                if (bmobUser != null) {
+                    // 允许用户使用应用,然后是自己的逻辑
+                    ToastUtils.showToast(this, "已经登录了!!么么哒", Toast.LENGTH_LONG);
+                    startActivity(new Intent(MainActivity.this, RankActivity.class));
+                } else {
+                    //缓存用户对象为空时， 可打开用户登录界面…
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                }
                 break;
-            case R.id.bt_setting:
-                startActivity(new Intent(MainActivity.this, CollectionActivity.class));
+            case R.id.bt_collection:
+                if (bmobUser != null) {
+                    // 允许用户使用应用,然后是自己的逻辑
+                    ToastUtils.showToast(this, "已经登录了!!么么哒", Toast.LENGTH_LONG);
+                    startActivity(new Intent(MainActivity.this, CollectionActivity.class));
+                } else {
+                    //缓存用户对象为空时， 可打开用户登录界面…
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                }
                 break;
             case R.id.bt_login:
-                BmobUser bmobUser = BmobUser.getCurrentUser(this);
+
                 if (bmobUser != null) {
                     // 允许用户使用应用,然后是自己的逻辑
                     ToastUtils.showToast(this, "已经登录了!!么么哒", Toast.LENGTH_LONG);

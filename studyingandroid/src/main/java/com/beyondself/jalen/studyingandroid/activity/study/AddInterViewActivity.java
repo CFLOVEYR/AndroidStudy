@@ -7,13 +7,20 @@ import android.widget.EditText;
 
 import com.beyondself.jalen.studyingandroid.R;
 import com.beyondself.jalen.studyingandroid.activity.main.BaseActivity;
+import com.beyondself.jalen.studyingandroid.dao.BookDao;
 import com.beyondself.jalen.studyingandroid.dao.InterViewDao;
+import com.beyondself.jalen.studyingandroid.domain.InterView;
 import com.beyondself.jalen.studyingandroid.utils.StringUtils;
+
+import java.util.List;
+
+import cn.bmob.v3.listener.SaveListener;
 
 public class AddInterViewActivity extends BaseActivity {
     private EditText etAddInterviewTitle;
     private EditText etAddInterviewContent;
     private Button btAddInterview;
+    private List<InterView> mData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,21 +54,25 @@ public class AddInterViewActivity extends BaseActivity {
                 String content = etAddInterviewContent.getText().toString();
                 if (!StringUtils.isEmpty(title) && !StringUtils.isEmpty(content)) {
                     //添加到数据库
-                    boolean result = InterViewDao.insert(title, content);
+                    int max = BookDao.queryMaxCount();
+                    boolean result = InterViewDao.insert(max + 1, title, content, false, 0);
                     showToast(result ? "添加成功" : "添加失败");
                     //添加到网络
+                    final InterView interView = InterViewDao.queryByID(max+1);
+                    interView.save(AddInterViewActivity.this, new SaveListener() {
+                        @Override
+                        public void onSuccess() {
+                            showToast("插入成功" + interView.toString());
+                        }
 
+                        @Override
+                        public void onFailure(int i, String msg) {
+                            showToast("插入失败" + msg);
+                        }
+                    });
                 }
             }
         });
-//        //设置长点击事件
-//        btAddInterview.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                showDialog();
-//                return false;
-//            }
-//        });
 
     }
 

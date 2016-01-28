@@ -62,7 +62,7 @@ public class CommandDao {
             int zan = cursor.getInt(cursor.getColumnIndex("Zan"));
             int nozan = cursor.getInt(cursor.getColumnIndex("NoZan"));
 //            int pic = cursor.getInt(cursor.getColumnIndex("Pic"));
-            test.set_id(_id);
+            test.setId(_id);
             test.setUserName(name);
             test.setCommand(command);
             test.setZan(zan);

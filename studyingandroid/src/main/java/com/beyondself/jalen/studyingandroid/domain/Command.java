@@ -1,53 +1,24 @@
 package com.beyondself.jalen.studyingandroid.domain;
 
+import cn.bmob.v3.BmobObject;
+
 /**
- * =========================================================
- * <p/>
- * 版权: 个人开发Mr.Jalen  版权所有(c) 2016
- * <p/>
- * 作者:Jalen
- * <p/>
- * 版本: 1.0
- * <p/>
- * <p/>
- * 创建日期 : 2016/1/27  10:39
- * <p/>
- * <p/>
- * 邮箱：Studylifetime@sina.com
- * <p/>
- * 描述:
- * <p/>
- * <p/>
- * 修订历史:
- * <p/>
- * =========================================================
+ * 评论
  */
-public class Command {
-    int _id;
+public class Command extends BmobObject {
+    Integer id;
     String command;
-    int Zan;
-    int NoZan;
+    Integer Zan;
+    Integer NoZan;
     String UserName;
-    int Pic;
+    Integer Pic;
 
-    @Override
-    public String toString() {
-        return "Command{" +
-                "_id=" + _id +
-                ", command='" + command + '\'' +
-                ", Zan=" + Zan +
-                ", NoZan=" + NoZan +
-                ", UserName='" + UserName + '\'' +
-                ", Pic=" + Pic +
-                '}';
+    public Integer getId() {
+        return id;
     }
 
-    public int get_id() {
-        return _id;
-    }
-
-    public void set_id(int _id) {
-        this._id = _id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getCommand() {

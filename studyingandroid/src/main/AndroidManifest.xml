@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.beyondself.jalen.studyingandroid">
 
     <!-- Bmob的权限 -->
@@ -30,12 +31,13 @@
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
 
     <application
+        android:icon="@mipmap/book"
         android:name=".aplication.APP"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_lan"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
 
         <!-- 闪屏页面 -->
         <activity

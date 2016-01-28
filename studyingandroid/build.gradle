@@ -25,6 +25,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile files('libs/BmobSDK_V3.4.5_1111.jar')
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'com.squareup.okio:okio:1.4.0'
     compile files('libs/Msc.jar')
     //圆角图片的依赖
     compile 'de.hdodenhof:circleimageview:2.0.0'
@@ -34,4 +36,5 @@ dependencies {
     compile files('libs/MobCommons.jar')
     compile files('libs/MobTools.jar')
     compile project(':ListViewLibrary')
+    compile project(':DialogLibrary')
 }

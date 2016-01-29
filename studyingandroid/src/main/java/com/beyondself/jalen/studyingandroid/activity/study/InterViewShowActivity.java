@@ -14,11 +14,19 @@ import com.beyondself.jalen.studyingandroid.activity.login.LoginActivity;
 import com.beyondself.jalen.studyingandroid.activity.main.BaseActivity;
 import com.beyondself.jalen.studyingandroid.dao.CollectionDao;
 import com.beyondself.jalen.studyingandroid.dao.CommandDao;
+import com.beyondself.jalen.studyingandroid.domain.Collection;
 import com.beyondself.jalen.studyingandroid.domain.InterView;
 import com.beyondself.jalen.studyingandroid.domain.UserInfo;
+import com.beyondself.jalen.studyingandroid.utils.LogUtils;
 import com.beyondself.jalen.studyingandroid.utils.StringUtils;
 
+import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.DeleteListener;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
 
 public class InterViewShowActivity extends BaseActivity implements View.OnClickListener {
     private TextView tvInterviewShowTitle;
@@ -89,7 +97,7 @@ public class InterViewShowActivity extends BaseActivity implements View.OnClickL
                 if (mCurrentUser != null) {
                     //评论的的对话框展示
                     showDialogWrite();
-                }else {
+                } else {
                     showToast("请先登录");
                     startActivity(new Intent(InterViewShowActivity.this, LoginActivity.class));
                 }
@@ -99,7 +107,7 @@ public class InterViewShowActivity extends BaseActivity implements View.OnClickL
                 if (mCurrentUser != null) {
                     //添加到收藏的判断
                     judgeCollected();
-                }else {
+                } else {
                     showToast("请先登录");
                     startActivity(new Intent(InterViewShowActivity.this, LoginActivity.class));
                 }
@@ -112,27 +120,101 @@ public class InterViewShowActivity extends BaseActivity implements View.OnClickL
         }
     }
 
+    /**
+     * 判断是否收藏过的逻辑
+     */
     private void judgeCollected() {
+
         int id = mData.getId();
         boolean exsit = CollectionDao.queryExsit(id);
         if (!exsit) {
-            boolean result = CollectionDao.insertCollection(id, mData.getQuestion()
-                    , mData.getAnswer(), mData.getRemark(),
-                    mCurrentUser.getUsername());
-            if (result) {
-                showToast("收藏成功");
-                ivCollected.setImageResource(R.mipmap.star_on);
-            } else {
-                showToast("收藏失败");
-            }
+            final Collection coll = new Collection();
+            coll.setId(id);
+            coll.setQuestion(mData.getQuestion());
+            coll.setAnswer(mData.getAnswer());
+            coll.setUserName(mCurrentUser.getUsername());
+            coll.setRemark(mData.getRemark());
+            /**首先要先添加到网络上*/
+            coll.save(InterViewShowActivity.this, new SaveListener() {
+                @Override
+                public void onSuccess() {
+                    LogUtils.e("--添加收藏成功---", coll.toString());
+                }
+
+                @Override
+                public void onFailure(int i, String s) {
+                    showToast("添加失败" + s);
+                }
+            });
+            /**从网络获取数据,并存入本地数据库*/
+            BmobQuery<Collection> query = new BmobQuery<Collection>();
+            //查询id的相对应的值
+            query.addWhereEqualTo("id", id);
+            //执行查询方法
+            query.findObjects(InterViewShowActivity.this, new FindListener<Collection>() {
+                @Override
+                public void onSuccess(List<Collection> object) {
+                    // TODO Auto-generated method stub
+                    LogUtils.e("--查到数据---", "" + object.get(0).getObjectId());
+                    //添加到本地数据库
+                    boolean result = CollectionDao.insertCollection(object.get(0).getObjectId(), coll.getId(), coll.getQuestion()
+                            , coll.getAnswer(), coll.getRemark(),
+                            mCurrentUser.getUsername());
+                    if (result) {
+                        showToast("收藏成功");
+                        ivCollected.setImageResource(R.mipmap.star_on);
+                    } else {
+                        showToast("收藏失败");
+                    }
+                }
+
+                @Override
+                public void onError(int code, String msg) {
+                    // TODO Auto-generated method stub
+                    showToast("查询失败：" + msg);
+                }
+            });
 
         } else {
-
-            boolean result = CollectionDao.deleteItem(mData.getId());
-            if (result) {
+            //数据库删除
+            boolean delete = CollectionDao.deleteItem(mData.getId());
+            if (delete) {
+                showToast("本地数据库删除成功");
                 ivCollected.setImageResource(R.mipmap.star_off);
-                showToast("取消收藏");
+            } else {
+                showToast("本地数据库删除失败");
             }
+            /**从网络获取数据,删除服务器的数据*/
+            BmobQuery<Collection> query = new BmobQuery<Collection>();
+            //查询id的相对应的值
+            query.addWhereEqualTo("id", id);
+            //执行查询方法
+            query.findObjects(InterViewShowActivity.this, new FindListener<Collection>() {
+                @Override
+                public void onSuccess(List<Collection> object) {
+                    // TODO Auto-generated method stub
+                    LogUtils.e("--查到数据---", "" + object.get(0).getObjectId());
+                    final Collection coll = new Collection();
+                    coll.setObjectId(object.get(0).getObjectId());
+                    coll.delete(InterViewShowActivity.this, new DeleteListener() {
+                        @Override
+                        public void onSuccess() {
+                            showToast("服务器删除成功" + coll.toString());
+                        }
+
+                        @Override
+                        public void onFailure(int i, String s) {
+                            showToast("服务器删除失败" + s);
+                        }
+                    });
+                }
+                @Override
+                public void onError(int code, String msg) {
+                    // TODO Auto-generated method stub
+                    showToast("查询失败：" + msg);
+                }
+            });
+
 
         }
     }

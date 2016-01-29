@@ -238,7 +238,7 @@ public class InterViewActivity extends BaseActivity implements BGARefreshLayout.
         dialog.setView(view);
         dialog.show();
     }
-
+    //适配器
     class KnowledgeAdapter extends BaseAdapter {
         ViewHolder holder;
 
@@ -277,7 +277,11 @@ public class InterViewActivity extends BaseActivity implements BGARefreshLayout.
         TextView textView;
     }
 
-    //从服务器获得数据
+    /**
+     * 从服务器获得信息,并更新数据
+     *
+     * @return
+     */
     private List<InterView> queryInterViewFromServer() {
         final List<InterView> list = new ArrayList<>();
         BmobQuery<InterView> query = new BmobQuery<InterView>();
@@ -305,7 +309,7 @@ public class InterViewActivity extends BaseActivity implements BGARefreshLayout.
                     interView.setUpdateCode(code);
                     interView.setUpdated(updated);
                     list.add(interView);
-                    Log.e("------", "---------------list的值为" + list.size());
+//                    Log.e("------", "---------------list的值为" + list.size());
                 }
                 //对List进行升序排序,让InterView实现Compareable接口即可
                 Collections.sort(list);
@@ -326,9 +330,9 @@ public class InterViewActivity extends BaseActivity implements BGARefreshLayout.
                     for (InterView inter : extras) {
                         boolean insert = InterViewDao.insert(inter.getId(), inter.getQuestion(), inter.getAnswer(), inter.getUpdated(), inter.getUpdateCode());
                         if (insert) {
-                            Log.e("------", "添加数据成功" + inter.getId() + "---" + inter.getQuestion());
+//                            Log.e("------", "添加数据成功" + inter.getId() + "---" + inter.getQuestion());
                         } else {
-                            Log.e("------", "添加数据失败");
+//                            Log.e("------", "添加数据失败");
                         }
                     }
                     showToast("添加了" + (list.size() - mData_local.size()) + "道面试题");
@@ -365,10 +369,10 @@ public class InterViewActivity extends BaseActivity implements BGARefreshLayout.
 
                     Integer id_server = list.get(i).getId();
                     Integer id_local = mData_local1.get(i).getId();
-                    Log.e("----id_server-----", "-----------" + id_server + "**************" + id_local);
+//                    Log.e("----id_server-----", "-----------" + id_server + "**************" + id_local);
                     Integer code_server = list.get(i).getUpdateCode();
                     Integer code_local = mData_local1.get(i).getUpdateCode();
-                    Log.e("----code_server-----", "-----------" + code_server + "**************" + code_local);
+//                    Log.e("----code_server-----", "-----------" + code_server + "**************" + code_local);
                     boolean result = code_server > code_local;
                     //如果服务器确实更新了,而且更新的版本为大于当前版本
                     if (updated && result && id_local == id_server) {

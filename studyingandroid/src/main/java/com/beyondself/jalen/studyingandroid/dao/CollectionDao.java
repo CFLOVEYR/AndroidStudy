@@ -3,6 +3,7 @@ package com.beyondself.jalen.studyingandroid.dao;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.beyondself.jalen.studyingandroid.domain.Collection;
 
@@ -19,16 +20,19 @@ public class CollectionDao {
     /**
      * Interview表中添加对题目的评论
      */
-    public static boolean insertCollection(int _id, String qustion, String answer, String remark, String name) {
+    public static boolean insertCollection(String objectId, int _id, String qustion, String answer, String remark, String name) {
         SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH1, null,
                 SQLiteDatabase.OPEN_READWRITE);
+        Log.e("--------------------","---题目的编号为:  "+objectId);
         ContentValues values = new ContentValues();
         //添加数据
+        values.put("objectId", objectId);
         values.put("_id", _id);
         values.put("Question", qustion);
         values.put("Answer", answer);
         values.put("Remark", remark);
         values.put("UserName", name);
+
         long result = db.insert("Collection", null, values);
         db.close();
         return !(result == -1);
@@ -48,7 +52,20 @@ public class CollectionDao {
         db.close();
         return false;
     }
-
+    /**
+     * 更新是否收藏
+     */
+    public static boolean updateExsit(int _id) {
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH1, null,
+                SQLiteDatabase.OPEN_READONLY);
+        Cursor cursor = db.rawQuery("select * from Collection where _id = ?", new String[]{_id + ""});
+        if (cursor.moveToNext()) {
+            return true;
+        }
+        cursor.close();
+        db.close();
+        return false;
+    }
     /**
      * 取消收藏
      */
@@ -80,7 +97,9 @@ public class CollectionDao {
             String answer = cursor.getString(cursor.getColumnIndex("Answer"));
             String remark = cursor.getString(cursor.getColumnIndex("Remark"));
             String userName = cursor.getString(cursor.getColumnIndex("UserName"));
-            test.set_id(id);
+            String objectId = cursor.getString(cursor.getColumnIndex("objectId"));
+            test.setObjectId(objectId);
+            test.setId(id);
             test.setQuestion(question);
             test.setAnswer(answer);
             test.setRemark(remark);

@@ -26,17 +26,17 @@ import cn.bmob.v3.BmobObject;
  */
 public class Collection extends BmobObject {
     String UserName;
-    Integer _id;
+    Integer id;
     String Question;
     String Answer;
     String Remark;
 
-    public int get_id() {
-        return _id;
+    public Integer getId() {
+        return id;
     }
 
-    public void set_id(int _id) {
-        this._id = _id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getQuestion() {
@@ -75,7 +75,7 @@ public class Collection extends BmobObject {
     public String toString() {
         return "Collection{" +
                 "UserName='" + UserName + '\'' +
-                ", _id=" + _id +
+                ", id=" + id +
                 ", Question='" + Question + '\'' +
                 ", Answer='" + Answer + '\'' +
                 ", Remark='" + Remark + '\'' +

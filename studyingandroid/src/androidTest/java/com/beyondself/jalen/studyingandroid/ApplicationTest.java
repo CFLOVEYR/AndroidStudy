@@ -19,7 +19,7 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
 
     public void testInsert() {
         for (int i = 0; i < 10; i++) {
-            CollectionDao.insertCollection(i+1,"423423","dfnaf","fdsaga","tom");
+            CollectionDao.insertCollection("34235",i+1,"423423","dfnaf","fdsaga","tom");
         }
 
     }

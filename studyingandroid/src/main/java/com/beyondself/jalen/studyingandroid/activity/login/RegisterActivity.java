@@ -52,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
      * @param view
      */
     public void phone_register(View view) {
+        Toast.makeText(RegisterActivity.this, "点击", Toast.LENGTH_SHORT).show();
         String number = et_register_pnumber.getText().toString();
          String code = et_register_code.getText().toString();
         final UserInfo user = new UserInfo();
@@ -59,12 +60,12 @@ public class RegisterActivity extends AppCompatActivity {
 //        user.setUsername(xxx);                  //设置用户名，如果没有传用户名，则默认为手机号码
         user.setPassword("123456");                  //设置用户密码123456位默认密码,可以修改
         user.setAge(18);                        //设置额外信息：此处为年龄
-        user.setDecription("我是一个大帅哥");
+        user.setDecription("我们都是一名出色的程序员");
         user.signOrLogin(RegisterActivity.this, code, new SaveListener() {
             @Override
             public void onSuccess() {
-                Toast.makeText(RegisterActivity.this, "注册或登录成功", Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
+                finish();
                 Log.i("smile", "" + user.getUsername() + "-" + user.getAge() + "-" + user.getObjectId());
             }
 

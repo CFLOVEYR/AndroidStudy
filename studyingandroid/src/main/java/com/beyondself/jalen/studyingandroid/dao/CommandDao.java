@@ -32,7 +32,7 @@ public class CommandDao {
     /**
      * Interview表中添加对题目的评论
      */
-    public static boolean insertCommandToCommand(int _id, String command, int pic, String username) {
+    public static boolean insertCommandToCommand(int _id, String command, int pic, String username,int zan, int nozan) {
         SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH1, null,
                 SQLiteDatabase.ENABLE_WRITE_AHEAD_LOGGING);
         ContentValues values = new ContentValues();
@@ -41,6 +41,8 @@ public class CommandDao {
         values.put("_id", _id);
         values.put("Pic", pic);
         values.put("UserName", username);
+        values.put("Zan", zan);
+        values.put("NoZan", nozan);
         long result = db.insert("Commands", null, values);
         db.close();
         return !(result == -1);

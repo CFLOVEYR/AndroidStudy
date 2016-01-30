@@ -14,7 +14,6 @@ import com.beyondself.jalen.studyingandroid.R;
 import com.beyondself.jalen.studyingandroid.activity.login.LoginActivity;
 import com.beyondself.jalen.studyingandroid.activity.study.CollectionActivity;
 import com.beyondself.jalen.studyingandroid.activity.study.InterViewActivity;
-import com.beyondself.jalen.studyingandroid.activity.study.StudyActivity;
 import com.beyondself.jalen.studyingandroid.utils.ToastUtils;
 import com.iflytek.cloud.RecognizerListener;
 
@@ -95,12 +94,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void onClick(View v) {
         BmobUser bmobUser = BmobUser.getCurrentUser(this);
         switch (v.getId()) {
             case R.id.bt_answer_pattern:
-                startActivity(new Intent(MainActivity.this, StudyActivity.class));
+                ToastUtils.showToast(this, "功能正在完善中...敬请期待", Toast.LENGTH_LONG);
+                //startActivity(new Intent(MainActivity.this, StudyActivity.class));
                 break;
             case R.id.bt_story_pattern:
                 startActivity(new Intent(MainActivity.this, InterViewActivity.class));

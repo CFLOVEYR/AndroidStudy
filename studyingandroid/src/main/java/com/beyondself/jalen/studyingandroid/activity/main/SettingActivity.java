@@ -217,6 +217,9 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 BmobUser.logOut(SettingActivity.this);   //清除缓存用户对象
                 BmobUser currentUser = BmobUser.getCurrentUser(SettingActivity.this);
+                if (currentUser == null) {
+                    ToastUtils.showToast(SettingActivity.this, "注销成功", Toast.LENGTH_SHORT);
+                }
             }
         });
     }

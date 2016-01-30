@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.beyondself.jalen.studyingandroid.R;
+import com.beyondself.jalen.studyingandroid.utils.ToastUtils;
 
 import cn.bmob.v3.BmobSMS;
 import cn.bmob.v3.BmobUser;
@@ -77,6 +78,7 @@ public class PickUpPSDActivity extends AppCompatActivity {
                 public void done(BmobException ex) {
                     if (ex == null) {
                         Log.i("smile", "密码重置成功");
+                        ToastUtils.showToast(PickUpPSDActivity.this, "密码重置成功", Toast.LENGTH_SHORT);
                         //跳转到登录界面
                         startActivity(new Intent(PickUpPSDActivity.this, LoginActivity.class));
                         finish();

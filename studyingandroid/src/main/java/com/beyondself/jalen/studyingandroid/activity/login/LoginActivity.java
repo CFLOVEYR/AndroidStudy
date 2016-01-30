@@ -1,8 +1,8 @@
 package com.beyondself.jalen.studyingandroid.activity.login;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -10,7 +10,6 @@ import android.widget.Toast;
 import com.beyondself.jalen.studyingandroid.R;
 import com.beyondself.jalen.studyingandroid.domain.UserInfo;
 
-import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.SaveListener;
 
 public class LoginActivity extends AppCompatActivity {
@@ -22,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        setTitle("登录");
         et_login_pnumber = (EditText) findViewById(R.id.et_login_pnumber);
         et_login_psd = (EditText) findViewById(R.id.et_login_psd);
     }

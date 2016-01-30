@@ -15,6 +15,7 @@ import com.beyondself.jalen.studyingandroid.activity.main.BaseActivity;
 import com.beyondself.jalen.studyingandroid.dao.CollectionDao;
 import com.beyondself.jalen.studyingandroid.dao.CommandDao;
 import com.beyondself.jalen.studyingandroid.domain.Collection;
+import com.beyondself.jalen.studyingandroid.domain.Command;
 import com.beyondself.jalen.studyingandroid.domain.InterView;
 import com.beyondself.jalen.studyingandroid.domain.UserInfo;
 import com.beyondself.jalen.studyingandroid.utils.LogUtils;
@@ -88,12 +89,14 @@ public class InterViewShowActivity extends BaseActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_remark_read:
+                mCurrentUser = BmobUser.getCurrentUser(InterViewShowActivity.this, UserInfo.class);
                 showToast("进入评论阅读");
                 Intent intent = new Intent(this, CommandShowActivity.class);
                 intent.putExtra("_id", mData.getId());
                 startActivity(intent);
                 break;
             case R.id.bt_remark_write:
+                mCurrentUser = BmobUser.getCurrentUser(InterViewShowActivity.this, UserInfo.class);
                 if (mCurrentUser != null) {
                     //评论的的对话框展示
                     showDialogWrite();
@@ -104,6 +107,7 @@ public class InterViewShowActivity extends BaseActivity implements View.OnClickL
 
                 break;
             case R.id.iv_collected:
+                mCurrentUser = BmobUser.getCurrentUser(InterViewShowActivity.this, UserInfo.class);
                 if (mCurrentUser != null) {
                     //添加到收藏的判断
                     judgeCollected();
@@ -208,6 +212,7 @@ public class InterViewShowActivity extends BaseActivity implements View.OnClickL
                         }
                     });
                 }
+
                 @Override
                 public void onError(int code, String msg) {
                     // TODO Auto-generated method stub
@@ -237,19 +242,51 @@ public class InterViewShowActivity extends BaseActivity implements View.OnClickL
                 if (!StringUtils.isEmpty(command)) {
                     //提交到服务器,并改变本地数据库,并且重新查询
                     int id = mData.getId();
-                    //添加自己的评论
-                    boolean result = CommandDao.updateCommandToInterView(id, command);
+//                    //添加自己的评论
+//                    boolean result = CommandDao.updateCommandToInterView(id, command);
 //                            int pic = user.getPic();
-                    String username = mCurrentUser.getUsername();
-                    boolean result1 = CommandDao.insertCommandToCommand(id, command, 1, username);
-                    if (result1) {
-                        showToast("增加评论成功");
-                    }
 
+                    //模拟添加数据
+                    for (int i = 0; i <50; i++) {
+
+                        //添加到本地服务器
+                        String username = mCurrentUser.getUsername();
+                        boolean result1 = CommandDao.insertCommandToCommand(id, command, 0, username, 0, 0);
+                        if (result1) {
+//                            showToast("本地数据库增加评论成功");
+                        }
+
+                        //添加到服务器
+                        Command server = new Command();
+                        server.setId(id);
+                        server.setCommand(command);
+                        server.setUserName(username);
+                        server.setPic(0);
+                        server.setZan(i);
+                        server.setNoZan(0);
+                        server.save(InterViewShowActivity.this, new SaveListener() {
+                            @Override
+                            public void onSuccess() {
+//                                showToast("数据库保存成功");
+                            }
+
+                            @Override
+                            public void onFailure(int i, String s) {
+                                showToast("保存失败" + s);
+                            }
+                        });
+                    }
+                    //取消对话框
                     dialog.dismiss();
                 } else {
                     showToast("输入内容不为空");
                 }
+//                Integer id;
+//                String command;
+//                Integer Zan;
+//                Integer NoZan;
+//                String UserName;
+//                Integer Pic
             }
         });
 

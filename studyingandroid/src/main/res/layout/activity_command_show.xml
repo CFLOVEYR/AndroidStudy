@@ -4,9 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.beyondself.jalen.studyingandroid.activity.study.CommandShowActivity">
-
-    <ListView
-        android:id="@+id/lv_command"
+    <!--下拉刷新,上拉加载更多的空间-->
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rl_modulename_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="match_parent">
+
+        <!-- 内容控件 -->
+        <ListView
+            android:id="@+id/lv_command"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ListView>
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
 </RelativeLayout>

@@ -147,7 +147,7 @@ public class InterViewShowActivity extends BaseActivity implements View.OnClickL
 
                 @Override
                 public void onFailure(int i, String s) {
-                    showToast("添加失败" + s);
+//                    showToast("添加失败" + s);
                 }
             });
             /**从网络获取数据,并存入本地数据库*/
@@ -183,10 +183,10 @@ public class InterViewShowActivity extends BaseActivity implements View.OnClickL
             //数据库删除
             boolean delete = CollectionDao.deleteItem(mData.getId());
             if (delete) {
-                showToast("本地数据库删除成功");
+//                showToast("本地数据库删除成功");
                 ivCollected.setImageResource(R.mipmap.star_off);
             } else {
-                showToast("本地数据库删除失败");
+//                showToast("本地数据库删除失败");
             }
             /**从网络获取数据,删除服务器的数据*/
             BmobQuery<Collection> query = new BmobQuery<Collection>();
@@ -203,12 +203,12 @@ public class InterViewShowActivity extends BaseActivity implements View.OnClickL
                     coll.delete(InterViewShowActivity.this, new DeleteListener() {
                         @Override
                         public void onSuccess() {
-                            showToast("服务器删除成功" + coll.toString());
+//                            showToast("服务器删除成功" + coll.toString());
                         }
 
                         @Override
                         public void onFailure(int i, String s) {
-                            showToast("服务器删除失败" + s);
+//                            showToast("服务器删除失败" + s);
                         }
                     });
                 }
@@ -281,12 +281,6 @@ public class InterViewShowActivity extends BaseActivity implements View.OnClickL
                 } else {
                     showToast("输入内容不为空");
                 }
-//                Integer id;
-//                String command;
-//                Integer Zan;
-//                Integer NoZan;
-//                String UserName;
-//                Integer Pic
             }
         });
 

@@ -43,6 +43,7 @@ public class CollectionActivity extends BaseActivity implements AdapterView.OnIt
 
     @Override
     protected void initView() {
+        setTitle("面试题收藏");
         lv_collection = (ListView) findViewById(R.id.lv_collection);
     }
 
@@ -55,14 +56,14 @@ public class CollectionActivity extends BaseActivity implements AdapterView.OnIt
             //从网络取数据
             getDataFromServer();
         } else {
-            showToast("开始从本地取数据了");
+//            showToast("开始从本地取数据了");
             refreshView();
         }
 
     }
 
     private void getDataFromServer() {
-        showToast("开始从网络取数据了");
+//        showToast("开始从网络取数据了");
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
@@ -76,7 +77,7 @@ public class CollectionActivity extends BaseActivity implements AdapterView.OnIt
                     @Override
                     public void onSuccess(List<Collection> object) {
                         // TODO Auto-generated method stub
-                        showToast("查询成功：共" + object.size() + "条数据。");
+//                        showToast("查询成功：共" + object.size() + "条数据。");
                         //保存到数据库
                         for (Collection coll : object) {
                             CollectionDao.insertCollection(coll.getObjectId(), coll.getId(),
@@ -84,7 +85,7 @@ public class CollectionActivity extends BaseActivity implements AdapterView.OnIt
                                     coll.getRemark(), coll.getUserName());
                         }
                         mData = CollectionDao.queryCommands(mCurrentUser.getUsername());
-                        showToast("mDATA的值为" + mData.size());
+//                        showToast("mDATA的值为" + mData.size());
                         refreshView();
                     }
 

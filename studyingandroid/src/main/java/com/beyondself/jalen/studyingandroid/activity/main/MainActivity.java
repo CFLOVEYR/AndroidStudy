@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.bt_rank:
                 if (bmobUser != null) {
                     // 允许用户使用应用,然后是自己的逻辑
-                    ToastUtils.showToast(this, "已经登录了!!么么哒", Toast.LENGTH_LONG);
+//                    ToastUtils.showToast(this, "已经登录了!!么么哒", Toast.LENGTH_LONG);
                     startActivity(new Intent(MainActivity.this, RankActivity.class));
                 } else {
                     //缓存用户对象为空时， 可打开用户登录界面…
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.bt_collection:
                 if (bmobUser != null) {
                     // 允许用户使用应用,然后是自己的逻辑
-                    ToastUtils.showToast(this, "已经登录了!!么么哒", Toast.LENGTH_LONG);
+//                    ToastUtils.showToast(this, "已经登录了!!么么哒", Toast.LENGTH_LONG);
                     startActivity(new Intent(MainActivity.this, CollectionActivity.class));
                 } else {
                     //缓存用户对象为空时， 可打开用户登录界面…

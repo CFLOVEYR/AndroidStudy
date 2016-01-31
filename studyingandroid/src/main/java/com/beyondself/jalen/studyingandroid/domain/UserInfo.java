@@ -10,6 +10,15 @@ public class UserInfo extends BmobUser {
     String decription;
     Integer age;
     int Pic;
+    Integer experience;
+
+    public Integer getExperience() {
+        return experience;
+    }
+
+    public void setExperience(Integer experience) {
+        this.experience = experience;
+    }
 
     public int getPic() {
         return Pic;

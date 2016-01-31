@@ -31,7 +31,7 @@
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
 
     <application
-        android:icon="@mipmap/book"
+        android:icon="@mipmap/icon_book"
         android:name=".aplication.APP"
         android:allowBackup="true"
         android:label="@string/app_name"

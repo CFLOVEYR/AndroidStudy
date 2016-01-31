@@ -61,7 +61,7 @@ public class InterViewDao {
         SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH1, null,
                 SQLiteDatabase.OPEN_READWRITE);
         InterView interView = new InterView();
-        Cursor cursor = db.rawQuery("select * from Interview where _id = ?", new String[]{id+""});
+        Cursor cursor = db.rawQuery("select * from Interview where _id = ?", new String[]{id + ""});
         if (cursor.moveToNext()) {
             String answer = cursor.getString(cursor.getColumnIndex("Answer"));
             String question = cursor.getString(cursor.getColumnIndex("Question"));
@@ -153,5 +153,20 @@ public class InterViewDao {
         cursor.close();
         db.close();
         return list;
+    }
+
+    /**
+     * 本地查询数据库本地是否已经存在此面试题
+     */
+    public static boolean queryByTitle(String question) {
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH1, null,
+                SQLiteDatabase.OPEN_READWRITE);
+        Cursor cursor = db.rawQuery("select * from InterView where Question = ?", new String[]{question});
+        if (cursor.moveToNext()) {
+            return true;
+
+        }
+        return false;
+
     }
 }

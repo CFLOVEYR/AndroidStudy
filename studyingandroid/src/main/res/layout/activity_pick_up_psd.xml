@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context="com.beyondself.jalen.studyingandroid.activity.login.PickUpPSDActivity">
 
 
@@ -25,18 +25,19 @@
             android:paddingLeft="90dp"
             android:singleLine="true"
             android:textColorHint="#DDDDDD"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/et_pickup_pnumber"
             android:layout_centerVertical="true"
             android:layout_marginLeft="14dp"
             android:text="+86"
             android:textColor="#353535"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
     </RelativeLayout>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -47,27 +48,39 @@
             android:id="@+id/et_pickup_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_weight="1"
             android:background="@drawable/edittext_login"
-            android:hint="填写验证码"
+            android:hint="输入验证码"
+            android:inputType="number"
             android:paddingLeft="90dp"
-            android:password="true"
             android:singleLine="true"
             android:textColorHint="#DDDDDD"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/tv_password"
-            android:layout_width="100dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/et_pickup_code"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:text="获取验证码"
+            android:text="验证码: "
             android:textColor="#353535"
+            android:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/tv_getSmsCode"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/et_pickup_code"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
             android:clickable="true"
             android:onClick="getCode"
-            android:textSize="16sp" />
+            android:text="获取验证码"
+            android:textColor="#353535"
+            android:textSize="15sp" />
+
     </RelativeLayout>
 
 
@@ -83,22 +96,22 @@
             android:layout_centerVertical="true"
             android:background="@drawable/edittext_login"
             android:hint="新密码: "
-            android:inputType="phone"
+            android:inputType="numberPassword"
             android:maxLength="11"
             android:paddingLeft="90dp"
             android:singleLine="true"
             android:textColorHint="#DDDDDD"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/et_pickup_newpsd"
             android:layout_centerVertical="true"
             android:layout_marginLeft="14dp"
-            android:text="输入新密码"
+            android:text="新密码"
             android:textColor="#353535"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
     </RelativeLayout>
 
 
@@ -114,22 +127,22 @@
             android:layout_centerVertical="true"
             android:background="@drawable/edittext_login"
             android:hint="输入新密码: "
-            android:inputType="phone"
+            android:inputType="numberPassword"
             android:maxLength="11"
             android:paddingLeft="90dp"
             android:singleLine="true"
             android:textColorHint="#DDDDDD"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/et_pickup_newpsd_confirm"
             android:layout_centerVertical="true"
             android:layout_marginLeft="14dp"
-            android:text="确认新密码"
+            android:text="确认密码"
             android:textColor="#353535"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
     </RelativeLayout>
 
 
@@ -140,14 +153,12 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/btn_enable_green"
         android:enabled="true"
+        android:onClick="save_phone_pickup"
         android:paddingBottom="7dp"
         android:paddingTop="7dp"
-        android:onClick="save_phone_pickup"
         android:text="确认修改密码"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
-
-
 
 
 </LinearLayout>
